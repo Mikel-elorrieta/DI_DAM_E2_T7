@@ -2,6 +2,6 @@
 
 Interfazeen garapena - bilera aplikazioa
 
-Angularren garatua
+Lengoiaiak: Typescript, Angular, SQL
 
 2025/01/13
