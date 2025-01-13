@@ -24,8 +24,6 @@ Erubrika:
 
 
 
-
-
 Denboralizazioa:
 
 ![image](https://github.com/user-attachments/assets/5587ac45-5e5d-4b97-a98c-129b8d0bc5ad)
