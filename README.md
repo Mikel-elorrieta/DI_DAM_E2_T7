@@ -15,6 +15,11 @@ Enuntziatua:
 ![image](https://github.com/user-attachments/assets/71ce533f-412d-479e-8a3a-7c522870fa1c)
 ![image](https://github.com/user-attachments/assets/13836c95-a799-4b9c-8921-0a6b12242b64)
 
+Erubrika:
+
+![image](https://github.com/user-attachments/assets/050b80b1-ec4c-4ba1-aff8-53f6866a0dea)
+![image](https://github.com/user-attachments/assets/155e087d-3e44-4757-848d-655ed4149105)
+
 
 
 
