@@ -4,6 +4,8 @@ Interfazeen garapena - bilera aplikazioa
 
 Lengoiaiak: Typescript, Angular, SQL
 
+Wiki: https://docs.google.com/document/d/1o9Eu3txwEwNQygoBbH2HBliS7x780nfxU0uJdZ42ZMc/edit?tab=t.0 
+
 2025/01/13
 
 
