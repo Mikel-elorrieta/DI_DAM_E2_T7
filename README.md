@@ -19,6 +19,8 @@ Erubrika:
 
 ![image](https://github.com/user-attachments/assets/050b80b1-ec4c-4ba1-aff8-53f6866a0dea)
 ![image](https://github.com/user-attachments/assets/155e087d-3e44-4757-848d-655ed4149105)
+![image](https://github.com/user-attachments/assets/e75ef0a1-2e3c-4b0c-8562-ab5dff80950a)
+
 
 
 
