@@ -1,0 +1,17 @@
+{
+  "hello": "Hola",
+  "login": "Iniciar sesión",
+  "logout": "Cerrar sesión",
+  "user": "Usuario",
+  "password": "Contraseña",
+  "name": "Nombre",
+  "surname": "Apellido",
+  "email": "Correo electrónico",
+  "phone": "Teléfono",
+  "address": "Dirección",
+  "spanish": "Español",
+  "basque": "Euskera",
+  "users": "Número de alumnos : ",
+  "teachers": "Número de profesores : "
+
+}

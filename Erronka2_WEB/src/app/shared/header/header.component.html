@@ -1,0 +1,30 @@
+<header class="app-header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+      <div class="row w-100 d-flex align-items-center">
+
+        <!-- Logo de la marca (Izquierda) -->
+        <div class="col-auto">
+          <img src="/logo.jpg" alt="Elorrieta Erreka Mari" class="logo" style="height: 50px;">
+        </div>
+
+
+        <!-- Selector de idioma (Derecha) -->
+        <div class="col-auto ms-auto">
+          <select name="language" id="language-select" class="form-select" (change)="translatetext($event)">
+            <option value="eu">EU</option>
+            <option value="es">ES</option>
+          </select>
+        </div>
+
+        <!-- Botón de logout (Derecha) -->
+        <div class="col-auto ms-3">
+          <button mat-button class="btn btn-danger" (click)="logout()">
+            {{'logout' | translate}}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+</header>

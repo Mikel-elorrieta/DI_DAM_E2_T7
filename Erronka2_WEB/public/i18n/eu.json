@@ -1,0 +1,19 @@
+{
+  "hello": "Kaixo",
+  "login": "Saioa hasi",
+  "logout": "Saioa itxi",
+  "user": "Erabiltzailea",
+  "password": "Pasahitza",
+  "name": "Izena",
+  "surname": "Abizena",
+  "email": "Posta elektronikoa",
+  "phone": "Telefonoa",
+  "address": "Helbidea",
+  "spanish": "Gaztelera",
+  "basque": "Euskara",
+  "users": "Ikasle kopuru : ",
+  "teachers": "Irakasle kopuru : "
+
+
+
+}
