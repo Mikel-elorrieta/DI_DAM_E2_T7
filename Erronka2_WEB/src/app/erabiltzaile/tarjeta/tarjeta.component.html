@@ -1,21 +1,21 @@
-<mat-card>
-	<mat-card-header>
-    	<mat-card-title>{{user.nombre}} {{user.apellidos}}</mat-card-title>
-	</mat-card-header>
-	<img mat-card-image [src]="user |imagen " [alt]="user.argazkia">
-	<mat-card-content>
-    	<h3>{{user.username}}</h3>
-    	<p>
-        	<strong>DNI: </strong>{{user.dni}};
-        	<br>
-          <strong>TELEFONO: </strong>{{user.telefono1}};
-        	<br>
-          <strong>direccion: </strong>{{user.direccion}};
-        	<br>
-            	</p>
-	</mat-card-content>
-	<mat-card-actions>
-    <button mat-button color="warn" routerLink="" (click)="mostrarSnackbar(user.nombre + ' aukeratu duzu')">Ikusi gehiago...</button>
-    <button mat-button color="info" routerLink="" (click)="mostrarSnackbar(user.nombre + ' aukeratu duzu')">Editatu</button>
-	</mat-card-actions>
+<mat-card class="card mb-3">
+  <mat-card-header class="card-header">
+    <mat-card-title class="card-title">{{user.nombre}} {{user.apellidos}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="user | imagen" [alt]="user.argazkia" class="card-img-top">
+  <mat-card-content class="card-body">
+    <h3 class="card-subtitle mb-2 text-muted">{{user.username}}</h3>
+    <p class="card-text">
+      <strong>DNI: </strong>{{user.dni}};
+      <br>
+      <strong>TELEFONO: </strong>{{user.telefono1}};
+      <br>
+      <strong>Direccion: </strong>{{user.direccion}};
+      <br>
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="card-footer">
+    <button mat-button color="warn" routerLink="" (click)="mostrarSnackbar(user.nombre + ' aukeratu duzu')" class="btn btn-danger">Ikusi gehiago...</button>
+    <button mat-button color="info" routerLink="" (click)="mostrarSnackbar(user.nombre + ' aukeratu duzu')" class="btn btn-info">Editatu</button>
+  </mat-card-actions>
 </mat-card>

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { OrdutegiComponent } from "../../ordutegi/ordutegi.component";
 
 @Component({
   selector: 'app-student',
-  imports: [],
+  imports: [OrdutegiComponent],
   templateUrl: './student.component.html',
   styleUrl: './student.component.css'
 })

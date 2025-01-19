@@ -9,11 +9,16 @@ app.use(bodyParser.json());
 
 // MySQL datu-baserako konexioa sortu
 const db = mysql.createConnection({
-    host: '10.5.104.55', // MySQL zerbitzariaren helbidea
+    //Localhost.....
+    host: 'localhost', // MySQL zerbitzariaren helbidea
+    port: '3306' , // Portua 
+
+    //Clase.....
+  //  host: '10.5.104.55', // MySQL zerbitzariaren helbidea
     user: 'admin', // MySQL erabiltzailea
     password: '', // MySQL pasahitza
     database: 'elorbase', // Datu-basearen izena
-    port: '3308' , // Portua 
+   // port: '3308' , // Portua 
 
 });
 
@@ -81,7 +86,7 @@ app.put('/users/:id', (req, res) => {
     });
 });
 
-app.delete('/users/:id', (req, res) => {
+app.delete('/usersdelete/:id', (req, res) => {
     const { id } = req.params;
     const query = 'DELETE FROM users WHERE id = ?';
     db.query(query, [id], (err, results) => {
@@ -99,33 +104,7 @@ app.get('/ciclos', (req, res) => {
     });
 });
 
-app.post('/ciclos', (req, res) => {
-    const newItem = req.body;
-    const query = 'INSERT INTO ciclos SET ?';
-    db.query(query, newItem, (err, results) => {
-        if (err) throw err;
-        res.send({ id: results.insertId, ...newItem });
-    });
-});
 
-app.put('/ciclos/:id', (req, res) => {
-    const { id } = req.params;
-    const updatedItem = req.body;
-    const query = 'UPDATE ciclos SET ? WHERE id = ?';
-    db.query(query, [updatedItem, id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
-
-app.delete('/ciclos/:id', (req, res) => {
-    const { id } = req.params;
-    const query = 'DELETE FROM ciclos WHERE id = ?';
-    db.query(query, [id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
 
 // Endpoints CRUD horarios
 
@@ -137,28 +116,38 @@ app.get('/horarios', (req, res) => {
     });
 });
 
-app.post('/horarios', (req, res) => {
-    const newItem = req.body;
-    const query = 'INSERT INTO horarios SET ?';
-    db.query(query, newItem, (err, results) => {
-        if (err) throw err;
-        res.send({ id: results.insertId, ...newItem });
-    });
-});
 
-app.put('/horarios/:id', (req, res) => {
-    const { id } = req.params;
-    const updatedItem = req.body;
-    const query = 'UPDATE horarios SET ? WHERE id = ?';
-    db.query(query, [updatedItem, id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
+// GET HORARIOS POR ID 
 
-app.delete('/horarios/:id', (req, res) => {
+app.get('/ordutegia/:id', (req, res) => {
     const { id } = req.params;
-    const query = 'DELETE FROM horarios WHERE id = ?';
+    const query = `
+        SELECT 
+            h.dia AS Dia,
+            h.hora AS Hora,
+            m.nombre AS Modulo,
+            CONCAT(u.nombre, ' ', u.apellidos) AS Profesor
+        FROM 
+            matriculaciones mat
+        JOIN 
+            modulos m ON mat.ciclo_id = m.curso
+        JOIN 
+            horarios h ON m.id = h.modulo_id
+        JOIN 
+            users u ON h.profe_id = u.id
+        WHERE 
+            mat.alum_id = ?
+        ORDER BY 
+            CASE 
+                WHEN h.dia = 'L/A' THEN 1
+                WHEN h.dia = 'M/A' THEN 2
+                WHEN h.dia = 'X' THEN 3
+                WHEN h.dia = 'J/O' THEN 4
+                WHEN h.dia = 'V/O' THEN 5
+                ELSE 6
+            END,
+            h.hora;
+    `;
     db.query(query, [id], (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -176,33 +165,6 @@ app.get('/matriculaciones', (req, res) => {
     });
 });
 
-app.post('/matriculaciones', (req, res) => {
-    const newItem = req.body;
-    const query = 'INSERT INTO matriculaciones SET ?';
-    db.query(query, newItem, (err, results) => {
-        if (err) throw err;
-        res.send({ id: results.insertId, ...newItem });
-    });
-});
-
-app.put('/matriculaciones/:id', (req, res) => {
-    const { id } = req.params;
-    const updatedItem = req.body;
-    const query = 'UPDATE matriculaciones SET ? WHERE id = ?';
-    db.query(query, [updatedItem, id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
-
-app.delete('/matriculaciones/:id', (req, res) => {
-    const { id } = req.params;
-    const query = 'DELETE FROM matriculaciones WHERE id = ?';
-    db.query(query, [id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
 
 // Endpoints CRUD modulos
 
@@ -214,33 +176,6 @@ app.get('/modulos', (req, res) => {
     });
 });
 
-app.post('/modulos', (req, res) => {
-    const newItem = req.body;
-    const query = 'INSERT INTO modulos SET ?';
-    db.query(query, newItem, (err, results) => {
-        if (err) throw err;
-        res.send({ id: results.insertId, ...newItem });
-    });
-});
-
-app.put('/modulos/:id', (req, res) => {
-    const { id } = req.params;
-    const updatedItem = req.body;
-    const query = 'UPDATE modulos SET ? WHERE id = ?';
-    db.query(query, [updatedItem, id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
-
-app.delete('/modulos/:id', (req, res) => {
-    const { id } = req.params;
-    const query = 'DELETE FROM modulos WHERE id = ?';
-    db.query(query, [id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
 
 // Endpoints CRUD reuniones
 
@@ -252,34 +187,26 @@ app.get('/reuniones', (req, res) => {
     });
 });
 
-app.post('/reuniones', (req, res) => {
-    const newItem = req.body;
-    const query = 'INSERT INTO reuniones SET ?';
-    db.query(query, newItem, (err, results) => {
-        if (err) throw err;
-        res.send({ id: results.insertId, ...newItem });
-    });
-});
+// RECUPERAR LAS REUNIONES DE HOY
 
-app.put('/reuniones/:id', (req, res) => {
-    const { id } = req.params;
-    const updatedItem = req.body;
-    const query = 'UPDATE reuniones SET ? WHERE id = ?';
-    db.query(query, [updatedItem, id], (err, results) => {
+app.get('/gaurkoBilerak', (req, res) => {
+    const query = 'SELECT * FROM reuniones WHERE DATE(fecha) = CURDATE(NOW());';
+    db.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);
     });
 });
 
-app.delete('/reuniones/:id', (req, res) => {
+// RECUPERAR LAS REUNIONES DE HOY POR USUARIO
+
+app.get('/gaurkoBilerak/:id', (req, res) => {
     const { id } = req.params;
-    const query = 'DELETE FROM reuniones WHERE id = ?';
+    const query = 'SELECT * FROM reuniones WHERE DATE(fecha) = CURDATE(NOW()) AND user_id = ?';
     db.query(query, [id], (err, results) => {
         if (err) throw err;
         res.send(results);
     });
 });
-
 
 
 // Endpoints CRUD tipos
@@ -291,38 +218,6 @@ app.get('/tipos', (req, res) => {
         res.send(results);
     });
 });
-
-app.post('/tipos', (req, res) => {
-    const newItem = req.body;
-    const query = 'INSERT INTO tipos SET ?';
-    db.query(query, newItem, (err, results) => {
-        if (err) throw err;
-        res.send({ id: results.insertId, ...newItem });
-    });
-});
-
-app.put('/tipos/:id', (req, res) => {
-    const { id } = req.params;
-    const updatedItem = req.body;
-    const query = 'UPDATE tipos SET ? WHERE id = ?';
-    db.query(query, [updatedItem, id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
-
-app.delete('/tipos/:id', (req, res) => {
-    const { id } = req.params;
-    const query = 'DELETE FROM tipos WHERE id = ?';
-    db.query(query, [id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
-    });
-});
-
-
-
-
 
 
 // Zerbitzaria hasieratu

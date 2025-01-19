@@ -10,12 +10,13 @@ import { AuthService } from '../auth/auth.service';
 import { HeaderComponent } from "../shared/header/header.component";
 import { TarjetaComponent } from '../erabiltzaile/tarjeta/tarjeta.component';
 import{TranslateModule} from '@ngx-translate/core';
-import { HomeService } from './god/home.service';
+import { HomeService } from './home.service';
+import { FooterComponent } from "../shared/footer/footer.component";
 
 
 @Component({
   selector: 'app-home-admin',
-  imports: [TranslateModule, TarjetaComponent,AdminComponent, GodComponent, StudentComponent, TeacherComponent, CommonModule, HeaderComponent],
+  imports: [TranslateModule, TarjetaComponent, AdminComponent, GodComponent, StudentComponent, TeacherComponent, CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -26,9 +27,6 @@ export class HomeComponent {
 
 
   constructor(private home : HomeService ,private router: Router, private auth: AuthService) {
-
-
-
 
 }
 

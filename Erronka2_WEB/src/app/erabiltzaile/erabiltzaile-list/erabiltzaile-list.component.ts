@@ -25,7 +25,6 @@ export class ErabiltzaileListComponent implements OnInit {
     this.fetchUserList();
   }
 
-  // Función para agregar usuarios a la lista
   private addUsersToList(response: IUser | IUser[]) {
     if (Array.isArray(response)) {
       this._ikasleak = [...this._ikasleak, ...response];
@@ -35,12 +34,12 @@ export class ErabiltzaileListComponent implements OnInit {
   }
 
   fetchUserList() {
-    // Primero, comprobamos si el rol es 1 o 2 (se obtiene "Irakas")
+
     if (this.auth.tipo_id === 1 || this.auth.tipo_id === 2) {
       this.erabiltzaileService.getIrakas().subscribe({
         next: (response) => {
           console.log('Irakas:', response);
-          this.addUsersToList(response); // Usamos la función para agregar los usuarios
+          this.addUsersToList(response);
         },
         error: (error) => {
           console.log(error);
@@ -48,12 +47,11 @@ export class ErabiltzaileListComponent implements OnInit {
       });
     }
 
-    // Si el rol es 1, 2 o 3, se obtiene "Users"
     if (this.auth.tipo_id === 1 || this.auth.tipo_id === 2 || this.auth.tipo_id === 3) {
       this.erabiltzaileService.getUsers().subscribe({
         next: (response) => {
           console.log('Users:', response);
-          this.addUsersToList(response); // Usamos la función para agregar los usuarios
+          this.addUsersToList(response);
         },
         error: (error) => {
           console.log(error);
@@ -61,12 +59,11 @@ export class ErabiltzaileListComponent implements OnInit {
       });
     }
 
-    // Si el rol es 1, se obtiene "Admin"
     if (this.auth.tipo_id === 1) {
       this.erabiltzaileService.getAdmin().subscribe({
         next: (response) => {
           console.log('Admin:', response);
-          this.addUsersToList(response); // Usamos la función para agregar los usuarios
+          this.addUsersToList(response);
         },
         error: (error) => {
           console.log(error);
@@ -75,7 +72,6 @@ export class ErabiltzaileListComponent implements OnInit {
     }
   }
 
-  // Propiedad para obtener la lista de usuarios
   get userList(): IUser[] {
     return this._ikasleak;
   }

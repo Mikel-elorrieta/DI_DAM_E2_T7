@@ -1,28 +1,38 @@
 <app-header></app-header>
 
-<div class="grid bm-8 justify-content-center">
-
-
-  <app-tarjeta [user]="user" class="col-3"></app-tarjeta>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <app-tarjeta [user]="user" class="col-md-3"></app-tarjeta>
   </div>
 
-  <span *ngIf="getRole() === 1 || getRole() === 2"> {{"users" | translate}}  {{_ikasleak.length}} <br> {{"teachers" | translate}}  {{_irakasle.length}}</span>
+  <div class="text-center mt-4">
+    <span *ngIf="getRole() === 1 || getRole() === 2">
+      {{"users" | translate}} {{_ikasleak.length}} <br>
+      {{"teachers" | translate}} {{_irakasle.length}}
+    </span>
+    <span *ngIf="getRole() === 3">
+      {{"users" | translate}} {{_ikasleak.length}}
+    </span>
+  </div>
 
-  <span *ngIf="getRole() === 3 "> {{"users" | translate}}  {{_ikasleak.length}}</span>
+  <div class="mt-4">
+    <ng-container *ngIf="getRole() === 1">
+      <app-god></app-god>
+    </ng-container>
+    <ng-container *ngIf="getRole() === 2">
+      <app-admin></app-admin>
+    </ng-container>
+    <ng-container *ngIf="getRole() === 3">
+      <app-teacher></app-teacher>
+    </ng-container>
+    <ng-container *ngIf="getRole() === 4">
+      <app-student></app-student>
+    </ng-container>
+    <ng-container *ngIf="!getRole()">
+      <p class="text-center">No hay usuario logueado. Por favor, inicia sesión.</p>
+    </ng-container>
+  </div>
+</div>
 
-<ng-container *ngIf="getRole() === 1">
-  <app-god></app-god>
-</ng-container>
-<ng-container *ngIf="getRole() === 2">
-  <app-admin></app-admin>
-</ng-container>
-<ng-container *ngIf="getRole() === 3">
-  <app-teacher></app-teacher>
-</ng-container>
-<ng-container *ngIf="getRole() === 4">
-  <app-student></app-student>
-</ng-container>
-<!-- Si no hay usuario logueado -->
-<ng-container *ngIf="!getRole()">
-  <p class="text-center">No hay usuario logueado. Por favor, inicia sesión.</p>
-</ng-container>
+<app-footer></app-footer>
+

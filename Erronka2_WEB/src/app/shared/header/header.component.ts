@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { HomeService } from '../../home/god/home.service';
+import { HomeService } from '../../home/home.service';
 import { IUser } from '../../interfaces/IUser';
 
 @Component({
