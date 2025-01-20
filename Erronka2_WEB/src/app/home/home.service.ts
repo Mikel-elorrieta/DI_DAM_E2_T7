@@ -39,8 +39,13 @@ export class HomeService {
 
   getOrdutegiaByID(id?: number) {
 
-    console.log(this._auth?.id);
 
     return this.http.get<IHorarios[]>(`${environment.baseUrl}/ordutegia/${id}`);
   }
+
+  getBilerakByID(id?: number) {
+
+      return this.http.get<IReuniones[]>(`${environment.baseUrl}/bilerak/${id}`);
+
+    }
 }

@@ -1,11 +1,12 @@
 export interface IHorarios {
-  dia:       Dia;
-  hora:      string;
-  profe_id:  number;
-  modulo_id: number;
+  Dia:       dia;
+  Hora:      number;
+  Modulo:    string;
+  Profesor:  string;
+
 }
 
-export enum Dia {
+export enum dia {
   JO = "J/O",
   LA = "L/A",
   MA = "M/A",

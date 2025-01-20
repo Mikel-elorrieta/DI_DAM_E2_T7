@@ -1,22 +1,18 @@
-<h1>Ordutegia</h1>
+<h1 class="text-center my-4">Ordutegia</h1>
 
-<table class="table table-bordered">
-  <thead>
+<table class="table table-bordered table-striped table-hover">
+  <thead class="thead-dark">
     <tr>
-      <th>Astelehena</th>
-      <th>Asteartea</th>
-      <th>Azteazkena</th>
-      <th>Osteguna</th>
-      <th>Ostirala</th>
+      <th></th>
+      <th *ngFor="let egun of egunak">{{ egun }}</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let ordu of ordutegia">
-      <td>{{ ordu.dia }}</td>
-      <td>{{ ordu.hora }}</td>
-      <td>{{ ordu.modulo_id }}</td>
-      <td>{{ ordu.profe_id }}</td>
-      <td></td>
+    <tr *ngFor="let ordu of orduak">
+      <td class="font-weight-bold">{{ ordu }}</td>
+      <td *ngFor="let egun of egunak">
+        {{ getModulo(egun, ordu)[0]?.Modulo }}
+      </td>
     </tr>
   </tbody>
 </table>

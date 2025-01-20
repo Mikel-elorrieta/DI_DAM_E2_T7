@@ -14,19 +14,29 @@ export class OrdutegiComponent {
 
   ordutegia: IHorarios[] = [];
 
+  egunak = ['L/A', 'M/A', 'X', 'J/O', 'V/O'];
+  orduak = [1, 2, 3, 4, 5];
+
   constructor(private home: HomeService, private auth: AuthService) {
     this.ordutegiaLortu();
   }
 
+
+
   ordutegiaLortu() {
-    this.home.getOrdutegiaByID(this.auth.auth?.id).subscribe({
+    const userId = this.auth.auth?.id;
+    if (!userId) {
+      console.log('User ID is undefined');
+      return;
+    }
+    this.home.getOrdutegiaByID(userId).subscribe({
       next: (response) => {
         console.log(response);
         this.ordutegia = response;
-
+        console.log(this.ordutegia);
 
         if (this.ordutegia.length > 1) {
-          console.log(this.ordutegia[1].hora);
+          console.log(this.ordutegia[0].Profesor);
         } else {
           console.log('No hay suficientes elementos en ordutegia');
         }
@@ -36,4 +46,10 @@ export class OrdutegiComponent {
       }
     });
   }
+
+  getModulo(dia: string, hora: number): IHorarios[] {
+
+    return this.ordutegia.filter((element) => element.Dia === dia && +element.Hora === hora);
+  }
+
 }

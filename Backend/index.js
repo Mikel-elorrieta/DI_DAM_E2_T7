@@ -10,15 +10,15 @@ app.use(bodyParser.json());
 // MySQL datu-baserako konexioa sortu
 const db = mysql.createConnection({
     //Localhost.....
-    host: 'localhost', // MySQL zerbitzariaren helbidea
-    port: '3306' , // Portua 
+   // host: 'localhost', // MySQL zerbitzariaren helbidea
+  //  port: '3306' , // Portua 
 
     //Clase.....
-  //  host: '10.5.104.55', // MySQL zerbitzariaren helbidea
+    host: '10.5.104.55', // MySQL zerbitzariaren helbidea
     user: 'admin', // MySQL erabiltzailea
     password: '', // MySQL pasahitza
     database: 'elorbase', // Datu-basearen izena
-   // port: '3308' , // Portua 
+    port: '3308' , // Portua 
 
 });
 
@@ -123,20 +123,40 @@ app.get('/ordutegia/:id', (req, res) => {
     const { id } = req.params;
     const query = `
         SELECT 
-            h.dia AS Dia,
-            h.hora AS Hora,
-            m.nombre AS Modulo,
-            CONCAT(u.nombre, ' ', u.apellidos) AS Profesor
+    h.dia AS Dia,
+    h.hora AS Hora,
+    m.nombre AS Modulo
+FROM 
+    horarios h
+JOIN 
+    modulos m ON m.id = h.modulo_id
+WHERE 
+    m.nombre NOT IN ('Tutoria', 'Guardia') 
+    AND h.modulo_id IN (
+        SELECT 
+            m.id 
         FROM 
-            matriculaciones mat
-        JOIN 
-            modulos m ON mat.ciclo_id = m.curso
-        JOIN 
-            horarios h ON m.id = h.modulo_id
-        JOIN 
-            users u ON h.profe_id = u.id
+            modulos m
         WHERE 
-            mat.alum_id = ?
+            m.ciclo_id = (
+                SELECT 
+                    ciclo_id 
+                FROM 
+                    matriculaciones mat
+                WHERE 
+                    alum_id = 3
+            )
+            AND m.curso = (
+                SELECT 
+                    curso 
+                FROM 
+                    matriculaciones mat
+                WHERE 
+                    alum_id = ?
+            )
+    )
+GROUP BY 
+    h.dia, h.hora, m.nombre
         ORDER BY 
             CASE 
                 WHEN h.dia = 'L/A' THEN 1
@@ -190,7 +210,7 @@ app.get('/reuniones', (req, res) => {
 // RECUPERAR LAS REUNIONES DE HOY
 
 app.get('/gaurkoBilerak', (req, res) => {
-    const query = 'SELECT * FROM reuniones WHERE DATE(fecha) = CURDATE(NOW());';
+    const query = 'SELECT * FROM reuniones WHERE DATE(fecha) = current_date();';
     db.query(query, (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -201,7 +221,20 @@ app.get('/gaurkoBilerak', (req, res) => {
 
 app.get('/gaurkoBilerak/:id', (req, res) => {
     const { id } = req.params;
-    const query = 'SELECT * FROM reuniones WHERE DATE(fecha) = CURDATE(NOW()) AND user_id = ?';
+    const query = 'SELECT * FROM reuniones WHERE DATE(fecha) = current_date() AND profesor_id = ?';
+    db.query(query, [id], (err, results) => {
+        if (err) throw err;
+        res.send(results);
+    });
+});
+
+
+//RECUPERAR TODAS LAS REUNIONES DE UN USUARIO
+
+
+app.get('/bilerak/:id', (req, res) => {
+    const { id } = req.params;
+    const query = 'SELECT * FROM reuniones where alumno_id = 3';
     db.query(query, [id], (err, results) => {
         if (err) throw err;
         res.send(results);
