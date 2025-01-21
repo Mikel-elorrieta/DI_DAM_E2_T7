@@ -7,6 +7,7 @@ import { BileraComponent } from './bilera/bilera.component';
 import { loginGuard } from './auth/login.guard';
 import { roleGuard } from './auth/role.guard';
 import { HomeComponent } from './home/home.component';
+import { BileraDetailsComponent } from './bilera-details/bilera-details.component';
 
 export const routes: Routes = [
   {
@@ -43,9 +44,11 @@ export const routes: Routes = [
     data: { role: 4 },
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'bilera/:id', component: BileraDetailsComponent },
       { path: '**', redirectTo: 'home' }
     ]
-  },
+  }
+,
   {
     path: 'irakasle',
     canActivate: [loginGuard, roleGuard],

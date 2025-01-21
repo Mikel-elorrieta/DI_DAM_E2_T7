@@ -48,4 +48,9 @@ export class HomeService {
       return this.http.get<IReuniones[]>(`${environment.baseUrl}/bilerak/${id}`);
 
     }
+    getBileraByID(id?: string) {
+
+      return this.http.get<IReuniones>(`${environment.baseUrl}/bilera/${id}`);
+
+    }
 }

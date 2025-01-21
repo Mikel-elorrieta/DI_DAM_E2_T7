@@ -242,6 +242,15 @@ app.get('/bilerak/:id', (req, res) => {
 });
 
 
+app.get('/bilera/:id', (req, res) => {
+    const { id } = req.params;
+    const query = 'SELECT * FROM reuniones where id_reunion = ?';
+    db.query(query, [id], (err, results) => {
+        if (err) throw err;
+        res.send(results);
+    });
+});
+
 // Endpoints CRUD tipos
 
 app.get('/tipos', (req, res) => {

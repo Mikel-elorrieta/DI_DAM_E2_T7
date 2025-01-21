@@ -49,6 +49,7 @@ export class OrdutegiComponent {
 
   getModulo(dia: string, hora: number): IHorarios[] {
 
+
     return this.ordutegia.filter((element) => element.Dia === dia && +element.Hora === hora);
   }
 
