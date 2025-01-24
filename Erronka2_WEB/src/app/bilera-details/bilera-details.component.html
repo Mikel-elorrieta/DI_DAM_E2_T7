@@ -1,5 +1,5 @@
 <h1 class="text-center my-4">
-  {{bilera?.id_reunion ? 'Editatu' : 'Bilera berria'}}
+  {{bilera.id_reunion ? 'Editatu' : 'Bilera berria'}}
 </h1>
 <hr class="mb-4">
 <div class="container">
@@ -14,7 +14,7 @@
             </div>
             <div class="col-12 mb-3">
               <label for="aula" class="form-label">Bileraren osagaiak</label>
-              <input id="aula" class="form-control" type="text" required [(ngModel)]="bilera.aula">
+              <input id="aula" class="form-control" type="text" required [(ngModel)]="bilera.aula" value="{{bilera.alumno_id}}">
             </div>
             <div class="col-12 mb-3">
               <label for="fecha" class="form-label">Bileraren prezioa</label>
