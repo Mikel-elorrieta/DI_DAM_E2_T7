@@ -42,12 +42,16 @@ export class HomeService {
 
     return this.http.get<IHorarios[]>(`${environment.baseUrl}/ordutegia/${id}`);
   }
-
-  getBilerakByID(id?: number) {
+  //Erabiltzaile baten bilerak
+    getBilerakByID(id?: number) {
 
       return this.http.get<IReuniones[]>(`${environment.baseUrl}/bilerak/${id}`);
 
+
+
     }
+
+    //Bilera id baten bilerak
     getBileraByID(id?: string) {
 
       return this.http.get<IReuniones>(`${environment.baseUrl}/bilera/${id}`);

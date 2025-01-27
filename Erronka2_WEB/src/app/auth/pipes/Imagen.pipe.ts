@@ -3,16 +3,25 @@ import { IUser } from '../../interfaces/IUser';
 
 @Pipe({
   name: 'imagen',
-  pure: false
-
+  pure: true,
 })
 export class ImagenPipePipe implements PipeTransform {
+  transform(erabiltzailea: IUser): string {
+    if (erabiltzailea.argazkia) {
 
-  transform(user: IUser): string {
-    if(!user.argazkia) {
-      return 'default/no-image.jpg';
-    }else (user.argazkia)
-      return user.argazkia;
+      console.log('Argazkia:', erabiltzailea.argazkia);
 
+      if (erabiltzailea.argazkia.type === 'Buffer') {
+        const buffer = erabiltzailea.argazkia.data;
+
+        if (Array.isArray(buffer) && buffer.length > 0) {
+          const uint8Array = new Uint8Array(buffer);
+          const binaryString = uint8Array.reduce((data, byte) => data + String.fromCharCode(byte), '');
+          return `${binaryString}`;
+        }
+      }
+    }
+    return 'default/no-image.jpg';
   }
+
 }

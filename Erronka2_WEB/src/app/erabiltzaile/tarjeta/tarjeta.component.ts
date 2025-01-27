@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { ImagenPipePipe } from '../../auth/pipes/Imagen.pipe';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ImagenPipePipe } from '../../auth/pipes/Imagen.pipe';
 import { IUser } from '../../interfaces/IUser';
 
 @Component({
@@ -15,7 +15,10 @@ import { IUser } from '../../interfaces/IUser';
 export class TarjetaComponent {
   @Input() user!: IUser;
 
-  constructor(private SnackBar: MatSnackBar) { }
+  constructor(private SnackBar: MatSnackBar) {
+
+
+   }
 
 
 

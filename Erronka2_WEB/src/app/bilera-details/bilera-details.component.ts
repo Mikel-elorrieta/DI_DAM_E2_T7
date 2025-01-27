@@ -15,6 +15,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeService } from '../home/home.service';
 import { IReuniones } from '../interfaces/IReuniones';
+import { IUser } from '../interfaces/IUser';
+import { MapaComponent } from '../mapa/mapa.component';
 
 @Component({
   selector: 'app-bilera-details',
@@ -30,7 +32,9 @@ import { IReuniones } from '../interfaces/IReuniones';
     MatIconModule,
     MatInputModule,
     MatOptionModule,
-    MatDialogModule
+    MatDialogModule,
+    MapaComponent
+
 
   ],
   templateUrl: './bilera-details.component.html',
@@ -38,7 +42,9 @@ import { IReuniones } from '../interfaces/IReuniones';
 })
 export class BileraDetailsComponent implements OnInit {
 
-  _bilera: IReuniones | undefined;
+  _bilera = <IReuniones>{ id_reunion: 0, estado: '', estado_eus: null, profesor_id: 0, alumno_id: 0, id_centro: '', titulo: '', asunto: '', aula: '', fecha: new Date()};
+
+
 
   constructor(
     private snackBar: MatSnackBar,
@@ -47,9 +53,22 @@ export class BileraDetailsComponent implements OnInit {
     private router: Router,
   ) {
   }
+  id: string = '';
+ngOnInit(): void {
+    this.bileraLortu();
+  }
 
-  ngOnInit(): void {
 
+  mostrarSnackbar(mensaje: string) {
+    this.snackBar.open(mensaje, 'cerrar', { duration: 2000 });
+  }
+
+  get bilera(): IReuniones {
+    return this._bilera;
+  }
+
+
+  bileraLortu() {
     this.homeS.getBileraByID(this.route.snapshot.paramMap.get('id')!).subscribe(
       (response) => {
         console.log('Bilera lortu da:', response);
@@ -61,11 +80,13 @@ export class BileraDetailsComponent implements OnInit {
     );
   }
 
-  mostrarSnackbar(mensaje: string) {
-    this.snackBar.open(mensaje, 'cerrar', { duration: 2000 });
-  }
 
-  get bilera(): IReuniones {
-    return this._bilera!;
-  }
+
+
+  //EL ID DEL CENTRO ES EL CCEN = bilera.id_centro
+
+
+
+  //MAPA DE
+
 }

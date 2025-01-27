@@ -14,11 +14,13 @@ const db = mysql.createConnection({
   //  port: '3306' , // Portua 
 
     //Clase.....
-    host: '10.5.104.55', // MySQL zerbitzariaren helbidea
+
+    // iker host: '10.5.104.39'
+    host: '10.5.104.39', // MySQL zerbitzariaren helbidea
     user: 'admin', // MySQL erabiltzailea
     password: '', // MySQL pasahitza
     database: 'elorbase', // Datu-basearen izena
-    port: '3308' , // Portua 
+    port: '3309' , // Portua 
 
 });
 
@@ -75,6 +77,35 @@ app.post('/login', (req, res) => {
         }
     });
 });
+
+
+//Insert user: VALUES : IUSER 
+/* values: {   
+  id:        number;
+  email:     string;
+  username:  string;
+  password:  string;
+  nombre:    string;
+  apellidos: string;
+  dni:       string;
+  direccion: string;
+  telefono1: number | null;
+  telefono2: null;
+  tipo_id:   number;
+  argazkia:  null;
+} */
+
+
+
+
+app.post('/addUser', (req, res) => {
+
+    const newUser = req.body;
+    
+    
+});
+
+
 
 app.put('/users/:id', (req, res) => {
     const { id } = req.params;
@@ -234,7 +265,7 @@ app.get('/gaurkoBilerak/:id', (req, res) => {
 
 app.get('/bilerak/:id', (req, res) => {
     const { id } = req.params;
-    const query = 'SELECT * FROM reuniones where alumno_id = 3';
+    const query = 'SELECT * FROM reuniones where alumno_id = ? and date(fecha) >= current_date()';
     db.query(query, [id], (err, results) => {
         if (err) throw err;
         res.send(results);
@@ -247,7 +278,7 @@ app.get('/bilera/:id', (req, res) => {
     const query = 'SELECT * FROM reuniones where id_reunion = ?';
     db.query(query, [id], (err, results) => {
         if (err) throw err;
-        res.send(results);
+        res.send(results[0]);
     });
 });
 

@@ -39,7 +39,7 @@ export class AuthService {
 
   private cargarUsuarioDesdeLocalStorage(): IUser | undefined {
     const usuario = localStorage.getItem('auth');
-    return usuario ? JSON.parse(usuario) : null; // Devuelve el usuario si existe
+    return usuario ? JSON.parse(usuario) : null;
   }
 
   logout() {
