@@ -10,17 +10,17 @@ app.use(bodyParser.json());
 // MySQL datu-baserako konexioa sortu
 const db = mysql.createConnection({
     //Localhost.....
-   // host: 'localhost', // MySQL zerbitzariaren helbidea
-  //  port: '3306' , // Portua 
+   host: 'localhost', // MySQL zerbitzariaren helbidea
+   port: '3306' , // Portua 
 
     //Clase.....
 
     // iker host: '10.5.104.39'
-    host: '10.5.104.39', // MySQL zerbitzariaren helbidea
+   // host: '10.5.104.39', // MySQL zerbitzariaren helbidea
     user: 'admin', // MySQL erabiltzailea
     password: '', // MySQL pasahitza
     database: 'elorbase', // Datu-basearen izena
-    port: '3309' , // Portua 
+   // port: '3309' , // Portua 
 
 });
 

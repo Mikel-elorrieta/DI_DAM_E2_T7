@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Iikastetxeak } from '../models/ikastetxeak.model'; // Adjust the path as necessary
+import { Iikastetxeak } from '../interfaces/Iikastetxeak';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapaService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http : HttpClient) { }
-
-  private _jatetxeak: Iikastetxeak[] = [];
-
-// Get jatetxeak via api Json localhost3000/Ikatetxeak
-  get jatetxeak() : Iikastetxeak[] {
-
-      this.http.get<Iikastetxeak[]>('http://localhost:3000/Ikatetxeak').subscribe({
-        next: (data) => { this._jatetxeak = data; },
-        error: (err) => { console.error(err); },
-        complete: () => { console.log(this._jatetxeak); }
-      });
-
-    return this._jatetxeak;
-
+  async getIkastetxeak(): Promise<Iikastetxeak[]> {
+    try {
+      return await lastValueFrom(this.http.get<Iikastetxeak[]>('http://localhost:3000/IKASTETXEAK'));
+    } catch (error) {
+      console.error('Error al obtener ikastetxeak:', error);
+      return [];
+    }
   }
 
+  async findIkastetxeById(id: Number): Promise<Iikastetxeak | undefined> {
+    try {
+      const ikastetxeak = await this.getIkastetxeak();
+     console.log(ikastetxeak);
+      return ikastetxeak.find((ikastetxe) => ikastetxe.CCEN === id);
+    } catch (error) {
+      console.error('Error al buscar el ikastetxe:', error);
+      return undefined;
+    }
+  }
 }

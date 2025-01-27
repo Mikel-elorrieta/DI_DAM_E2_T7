@@ -1,5 +1,5 @@
 export interface IReuniones {
-lat: any;
+  lat: any;
   id_reunion:  number;
   estado:      string;
   estado_eus:  null;

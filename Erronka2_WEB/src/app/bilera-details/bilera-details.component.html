@@ -1,49 +1,54 @@
-<hr class="mb-4">
+<app-header></app-header>
+
+<hr class="mb-4" />
 <div class="container">
   <div class="row justify-content-center">
-
-      <div class="card shadow-sm">
-        <div class="card-header bg-primary text-BLACK text-center">
-          <h1>{{bilera.titulo}}</h1>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-12 mb-3">
-              <div class="mb-3">
-                <label for="titulo" class="form-label">Titulo</label>
-                <p class="form-control">{{bilera.titulo}}</p>
-              </div>
-              <div class="mb-3">
-                <label for="alumno_id" class="form-label">Alumno id:</label>
-                <p class="form-control">{{bilera.alumno_id}}</p>
-              </div>
-              <div class="mb-3">
-                <label for="fecha" class="form-label">Fecha</label>
-                <p class="form-control">{{bilera.fecha}}</p>
-              </div>
-              <div class="mb-3">
-                <label for="asunto" class="form-label">Asunto</label>
-                <p class="form-control">{{bilera.asunto}}</p>
-              </div>
-              <div class="mb-3">
-                <label for="aula" class="form-label">Aula</label>
-                <p class="form-control">{{bilera.aula}}</p>
-              </div>
-              <div class="mb-3">
-                <label for="estado" class="form-label">Estado</label>
-                <p class="form-control">{{bilera.estado}}</p>
-              </div>
-              <div class="mb-3">
-
-                <app-mapa [id]="bilera.id_centro"></app-mapa>
-                <label for="kokapena" class="form-label">Kokapena</label>
-                <p class="form-control">{{bilera.id_centro}}</p>
+    <div class="card shadow-sm"></div>
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-BLACK text-center">
+        <h1>{{bilera.titulo}}</h1>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <div class="mb-3">
+              <label for="titulo" class="form-label">Titulo</label>
+              <p class="form-control">{{ bilera.titulo }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="alumno_id" class="form-label">Alumno id:</label>
+              <p class="form-control">{{ bilera.alumno_id }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="fecha" class="form-label">Fecha</label>
+              <p class="form-control">{{ bilera.fecha }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="asunto" class="form-label">Asunto</label>
+              <p class="form-control">{{ bilera.asunto }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="aula" class="form-label">Aula</label>
+              <p class="form-control">{{ bilera.aula }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="estado" class="form-label">Estado</label>
+              <p class="form-control">{{ bilera.estado }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="kokapena" class="form-label">Kokapena</label>
+              <div class="d-flex justify-content-center align-items-center">
+                <app-mapa
+                  *ngIf="bilera.id_centro"
+                  [id]="+bilera.id_centro"
+                  class="w-100"
+                ></app-mapa>
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
+  </div>
 </div>
+<app-footer></app-footer>

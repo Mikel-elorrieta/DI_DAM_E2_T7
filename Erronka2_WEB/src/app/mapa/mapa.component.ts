@@ -1,8 +1,9 @@
+import { Iikastetxeak } from './../interfaces/Iikastetxeak';
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import * as mapboxgl from 'mapbox-gl';
-
+import { MapaService } from './mapa.service';
 
 @Component({
   selector: 'app-mapa',
@@ -13,28 +14,33 @@ import * as mapboxgl from 'mapbox-gl';
 })
 export class MapaComponent {
 
-  // requpera como input una id :
-  @Input() id: string = '';
-
-
-  url: string = '';
+  @Input() id: Number = 0;
   title = 'mapa';
   map!: mapboxgl.Map;
   private lat: number = 43.26271;
   private lon: number = -2.92528;
+  private _ikastetxe: Iikastetxeak | undefined;
 
-
-  constructor(private route: ActivatedRoute) {
-
-  }
-
+  constructor(private route: ActivatedRoute, private service: MapaService) {}
 
   ngOnInit() {
-
-
-    this.mapaHasi(this.lon, this.lat);
+    console.log("Mapa " + this.id);
+    this.getLonAndLat();
   }
 
+  async getLonAndLat() {
+    try {
+      this._ikastetxe = await this.service.findIkastetxeById(this.id);
+      console.log(this._ikastetxe);
+
+      this.lat = this._ikastetxe?.LATITUD || 43.26271;
+      this.lon = this._ikastetxe?.LONGITUD || -2.92528;
+
+      this.mapaHasi( this.lat, this.lon);
+    } catch (error) {
+      console.error('Error al obtener la latitud y longitud:', error);
+    }
+  }
 
   mapaHasi(lon: number, lat: number) {
     this.map = new mapboxgl.Map({
@@ -54,16 +60,18 @@ export class MapaComponent {
       .setLngLat([lon, lat])
       .setPopup(
         new mapboxgl.Popup({ offset: 25 })
-          .setHTML(
-            `<h3>${lat} ${lon} </h3>`)
+        .setHTML(`
+        <div style="font-family: Arial, sans-serif; color: #333;">
+          <h3 style="margin: 0; color: #007BFF;">${this._ikastetxe?.NOM}</h3>
+          <p style="margin: 0;">Municipio: ${this._ikastetxe?.DMUNIC}</p>
+          <p style="margin: 0;">Dirección: ${this._ikastetxe?.DOMI}</p>
+          <p style="margin: 0;">Código Postal: ${this._ikastetxe?.CPOS}</p>
+          <p style="margin: 0;">Teléfono: ${this._ikastetxe?.TEL1}</p>
+          <p style="margin: 0;">Email: <a href="mailto:${this._ikastetxe?.EMAIL}">${this._ikastetxe?.EMAIL}</a></p>
+          <p style="margin: 0;">Página Web: <a href="${this._ikastetxe?.PAGINA}" target="_blank">${this._ikastetxe?.PAGINA}</a></p>
+        </div>
+        `)
       )
       .addTo(this.map);
   }
-//Hace una llamada a la api para obtener la longitud y latitud de una dirección con una id a JSON SERVER
-  getLonAndLat() {
-
-  }
-
 }
-
-

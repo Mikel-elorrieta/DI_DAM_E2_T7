@@ -15,8 +15,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeService } from '../home/home.service';
 import { IReuniones } from '../interfaces/IReuniones';
-import { IUser } from '../interfaces/IUser';
 import { MapaComponent } from '../mapa/mapa.component';
+import { HeaderComponent } from "../shared/header/header.component";
+import { FooterComponent } from "../shared/footer/footer.component";
 
 @Component({
   selector: 'app-bilera-details',
@@ -33,10 +34,10 @@ import { MapaComponent } from '../mapa/mapa.component';
     MatInputModule,
     MatOptionModule,
     MatDialogModule,
-    MapaComponent
-
-
-  ],
+    MapaComponent,
+    HeaderComponent,
+    FooterComponent
+],
   templateUrl: './bilera-details.component.html',
   styleUrls: ['./bilera-details.component.css']
 })
@@ -53,7 +54,7 @@ export class BileraDetailsComponent implements OnInit {
     private router: Router,
   ) {
   }
-  id: string = '';
+  id: Number = 0;
 ngOnInit(): void {
     this.bileraLortu();
   }
