@@ -9,7 +9,6 @@ export class ImagenPipePipe implements PipeTransform {
   transform(erabiltzailea: IUser): string {
     if (erabiltzailea.argazkia) {
 
-      console.log('Argazkia:', erabiltzailea.argazkia);
 
       if (erabiltzailea.argazkia.type === 'Buffer') {
         const buffer = erabiltzailea.argazkia.data;

@@ -45,6 +45,7 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'bilera/:id', component: BileraDetailsComponent },
+      { path: 'userDetails/:id', component: ErabiltzaileDetailsComponent },
       { path: '**', redirectTo: 'home' }
     ]
   }
@@ -56,6 +57,7 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'bilerak', component: BileraComponent },
+      { path: 'userDetails/:id', component: ErabiltzaileDetailsComponent },
       { path: 'list', component: ErabiltzaileListComponent },
       { path: '**', redirectTo: 'home' }
     ]

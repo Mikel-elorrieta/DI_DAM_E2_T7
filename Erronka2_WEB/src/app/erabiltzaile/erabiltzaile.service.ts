@@ -38,6 +38,13 @@ export class ErabiltzaileService {
 
 
     }
+    getErabiltzaileByID(id?: number) {
+
+      return this.http.get<IUser>(`${environment.baseUrl}/user/${id}`);
+    }
+
+
+
 
 
 }

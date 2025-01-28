@@ -12,6 +12,7 @@ import { TarjetaComponent } from '../erabiltzaile/tarjeta/tarjeta.component';
 import{TranslateModule} from '@ngx-translate/core';
 import { HomeService } from './home.service';
 import { FooterComponent } from "../shared/footer/footer.component";
+import { IReuniones } from '../interfaces/IReuniones';
 
 
 @Component({
@@ -24,16 +25,35 @@ export class HomeComponent {
 
   _ikasleak : IUser[] = [];
   _irakasle : IUser[] = [];
+  private _gaurkoBilerak: IReuniones[] = [];
 
 
-  constructor(private home : HomeService ,private router: Router, private auth: AuthService) {
+
+  get gaurkoBilerak() {
+    return this._gaurkoBilerak;
+  }
+
+  constructor(private home : HomeService ,private router: Router, private auth: AuthService, private homeS : HomeService) {
 
 }
 
 ngOnInit() {
-
+this.bilerakLortu();
 this.getikasleakKopuru();
 this.getirakasleKopuru();
+}
+
+
+bilerakLortu() {
+  this.homeS.getGaurkoBilerak().subscribe({
+    next: (response) => {
+      console.log(response);
+      this._gaurkoBilerak = response;
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  });
 
 }
 

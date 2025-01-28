@@ -1,8 +1,41 @@
-
 <mat-divider></mat-divider>
-<br>
-<div class="grid bm-8">
+<br />
 
-  <div  *ngFor="let user of userList" class="col-12 sm:col-4 md:col-3 xl:col-2">
+<h1 class="text-center my-4">Erabiltzaileak filtratu</h1>
+
+<!-- Campo de búsqueda -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <mat-form-field class="w-100">
+        <mat-label>Hasi bilatzen</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Elige uno"
+          [(ngModel)]="termino"
+          name="termino"
+          [matAutocomplete]="auto"
+          (input)="buscar()"
+          class="form-control"
+        />
+        <mat-autocomplete
+          autoActiveFirstOption
+          #auto="matAutocomplete"
+          (optionSelected)="optionSelected($event.option.value)"
+        >
+          <mat-option *ngFor="let user of filteredUsers" [value]="user.nombre">
+            {{ user.nombre }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div class="grid bm-8">
+  <!-- Tarjetas filtradas -->
+  <div *ngFor="let user of filteredUsers" class="col-12 sm:col-4 md:col-3 xl:col-2">
     <app-tarjeta [user]="user"></app-tarjeta>
+  </div>
 </div>

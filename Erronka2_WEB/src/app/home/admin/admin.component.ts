@@ -11,26 +11,6 @@ import { HomeService } from '../home.service';
 export class AdminComponent {
 
   constructor(private homeS : HomeService) { }
-  private _gaurkoBilerak: IReuniones[] = [];
-  ngOnInit(): void {
-    this.bilerakLortu();
-  }
 
-  bilerakLortu() {
-    this.homeS.getGaurkoBilerak().subscribe({
-      next: (response) => {
-        console.log(response);
-        this._gaurkoBilerak = response;
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    });
-
-  }
-
-  get gaurkoBilerak() {
-    return this._gaurkoBilerak;
-  }
 
 }

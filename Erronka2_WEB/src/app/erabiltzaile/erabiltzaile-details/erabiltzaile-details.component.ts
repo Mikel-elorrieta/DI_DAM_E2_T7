@@ -1,26 +1,19 @@
-
 import { Component } from '@angular/core';
-
 import { MatCardModule } from '@angular/material/card';
-
 import { MatButtonModule } from '@angular/material/button';
-
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 import { CommonModule } from '@angular/common';
-
 import { FormsModule } from '@angular/forms';
-
 import { TranslateModule } from '@ngx-translate/core';
-
 import { ImagenPipePipe } from '../../auth/pipes/Imagen.pipe';
 import { IUser } from '../../interfaces/IUser';
+import { RouterModule } from '@angular/router';
 
 @Component({
 
   selector: 'app-erabiltzaile-details',
 
-  imports: [MatCardModule, MatButtonModule, CommonModule, FormsModule, TranslateModule, ImagenPipePipe],
+  imports: [RouterModule, MatCardModule, MatButtonModule, CommonModule, FormsModule, TranslateModule],
 
   templateUrl: './erabiltzaile-details.component.html',
 
@@ -40,6 +33,7 @@ export class ErabiltzaileDetailsComponent {
 
   mostrarSnackbar(message: string) {
 
+
     this.snackBar.open(message, 'Close', {
 
       duration: 2000,
@@ -49,6 +43,22 @@ export class ErabiltzaileDetailsComponent {
   }
 
   get user(){
+
+
+
+
+    return this._user;
+  }
+
+
+
+  getuserBYID(id: number) {
+
+    // this._user = this.erabiltzaileService.getErabiltzaileByID(id);
+
+
+
+
     return this._user;
   }
 

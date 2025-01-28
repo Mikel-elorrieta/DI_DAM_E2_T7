@@ -7,6 +7,10 @@
 
   <div class="text-center mt-4">
     <span *ngIf="getRole() === 1 || getRole() === 2">
+        <!-- garuko bilera kantitatea aurkeztu <p> :.. -->
+    <div class="col-md-12">
+      <p>Gaurko bilera kopuru: {{gaurkoBilerak.length}}</p>
+    </div>
       {{"users" | translate}} {{_ikasleak.length}} <br>
       {{"teachers" | translate}} {{_irakasle.length}}
     </span>

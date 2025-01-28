@@ -1,3 +1,7 @@
+
+<h1>
+  {{user?.id ? 'Editatu' : 'Erabiltzaile berria'}}
+  </h1>
 <mat-card class="card mb-3">
   <mat-card-header class="card-header">
     <mat-card-title class="card-title">{{user?.nombre}} {{user?.apellidos}}</mat-card-title>
@@ -11,11 +15,11 @@
       <br>
       <strong>Direccion: </strong>{{user?.direccion}};
       <br>
-      
+
     </p>
   </mat-card-content>
   <mat-card-actions class="card-footer">
-    <button mat-button color="warn" routerLink="" (click)="mostrarSnackbar(user?.nombre + ' aukeratu duzu')" class="btn btn-danger">Ikusi gehiago...</button>
-    <button mat-button color="info" routerLink="" (click)="mostrarSnackbar(user?.nombre + ' aukeratu duzu')" class="btn btn-info">Editatu</button>
+    <button mat-button color="warn" (click)="mostrarSnackbar(user?.nombre + ' aukeratu duzu')" class="btn btn-danger">Ikusi gehiago...</button>
+    <button mat-button color="info" (click)="mostrarSnackbar(user?.nombre + ' aukeratu duzu')" class="btn btn-info">Editatu</button>
   </mat-card-actions>
 </mat-card>
