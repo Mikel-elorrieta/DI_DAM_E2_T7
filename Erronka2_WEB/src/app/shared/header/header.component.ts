@@ -29,7 +29,7 @@ export class HeaderComponent {
 
   logout() {
     localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 
 

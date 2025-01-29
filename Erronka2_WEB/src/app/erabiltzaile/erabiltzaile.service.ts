@@ -13,6 +13,8 @@ export class ErabiltzaileService {
   constructor(private http : HttpClient,  private router: Router) { }
 
 
+  private _ikasleak : IUser[] = [];
+
 
 
     getUsers() {
@@ -41,6 +43,14 @@ export class ErabiltzaileService {
     getErabiltzaileByID(id?: number) {
 
       return this.http.get<IUser>(`${environment.baseUrl}/user/${id}`);
+    }
+
+
+    addUser(user : IUser) {
+      console.log('User:', user);
+
+      return this.http.post<IUser>(`${environment.baseUrl}/addUser`, user);
+
     }
 
 

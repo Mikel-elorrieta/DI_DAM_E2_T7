@@ -21,7 +21,7 @@ export class TarjetaComponent {
 
 
    erabiDetails() {
-    this.router.navigate([`god/userdetails/${this.user.id}`]);
+    this.router.navigate([`god/userDetails/${this.user.id}`]);
     console.log('Navigated to:', this.router.url);
     this.mostrarSnackbar('Bilera details');
   }

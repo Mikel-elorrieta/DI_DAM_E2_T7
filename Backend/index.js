@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const e = require('express');
 
 const app = express();
 app.use(cors());
@@ -88,37 +89,22 @@ app.post('/login', (req, res) => {
     });
 });
 
+  app.post('/addUser', async (req, res) => {
+    
+    const newItem = req.body;
+    console.log("EN EL BACKEND / POST");
+    console.log(newItem);
 
-//Insert user: VALUES : IUSER 
-/* values: {   
-  id:        number;
-  email:     string;
-  username:  string;
-  password:  string;
-  nombre:    string;
-  apellidos: string;
-  dni:       string;
-  direccion: string;
-  telefono1: number | null;
-  telefono2: null;
-  tipo_id:   number;
-  argazkia:  null;
-} */
+    const query = 'INSERT INTO users SET ?';
+    db.query(query, newItem, (err, results) => {
+        if (err) throw err;
+        console.log("ERROR" , err)
 
+        res.send({ id: results.insertId, ...newItem });
 
-
-
-app.post('/addUser', (req, res) => {
-    const newUser = req.body;
-
-    // Validación básica
-    if (!newUser.email || !newUser.username || !newUser.password || !newUser.tipo_id) {
-        return res.status(400).json({ error: "Faltan campos obligatorios." });
-    }
-    users.push(newUser);
-
-    res.status(201).json({ message: "Usuario agregado exitosamente.", user: newUser });
-});
+    });
+  });
+  
 
 
 

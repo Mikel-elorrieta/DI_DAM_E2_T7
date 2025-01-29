@@ -66,16 +66,16 @@ export class LoginComponent {
   gohome() {
     switch (this._User.tipo_id) {
       case 1:
-        this.router.navigate(['god']);
+        this.router.navigate(['god/home']);
         break;
       case 2:
-        this.router.navigate(['admin']);
+        this.router.navigate(['admin/home']);
         break;
       case 3:
-        this.router.navigate(['irakasle']);
+        this.router.navigate(['irakasle/home']);
         break;
       case 4:
-        this.router.navigate(['ikasle']);
+        this.router.navigate(['ikasle/home']);
         break;
 
     }

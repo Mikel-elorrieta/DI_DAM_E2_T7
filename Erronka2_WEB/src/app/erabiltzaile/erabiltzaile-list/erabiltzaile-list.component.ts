@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-erabiltzaile-list',
@@ -21,7 +22,7 @@ export class ErabiltzaileListComponent implements OnInit {
   filteredUsers: IUser[] = [];
   termino: string = '';
 
-  constructor(private erabiltzaileService: ErabiltzaileService, private authS: AuthService) {}
+  constructor(private erabiltzaileService: ErabiltzaileService, private authS: AuthService,  private router : Router) {}
 
   get auth() {
     return this.authS.auth!;
@@ -90,6 +91,11 @@ export class ErabiltzaileListComponent implements OnInit {
     this.filteredUsers = this._ikasleak.filter((ikasle) => ikasle.nombre === selectedName);
 
     this.termino = selectedName;
+  }
+
+  createUser() {
+    this.router.navigate([`god/addUser`]);
+    console.log('Crear usuario');
   }
 
 
