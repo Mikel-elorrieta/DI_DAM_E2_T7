@@ -22,24 +22,22 @@ export class AuthService {
   }
 
   logeatutaDago(): boolean {
+
     if (this._auth) {
-      console.log(true);
       return true;
     }
 
     this._auth = this.cargarUsuarioDesdeLocalStorage();
     if (this._auth) {
-      console.log(true);
       return true;
     }
 
-    console.log(false);
     return false;
   }
 
   private cargarUsuarioDesdeLocalStorage(): IUser | undefined {
     const usuario = localStorage.getItem('auth');
-    return usuario ? JSON.parse(usuario) : null;
+    return usuario ? JSON.parse(usuario) : undefined;
   }
 
   logout() {

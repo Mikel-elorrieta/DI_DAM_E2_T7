@@ -1,4 +1,4 @@
-<mat-card class="card mb-3">
+<mat-card class="card mb-3 flex-card ">
   <mat-card-header class="card-header">
     <mat-card-title class="card-title">{{user.nombre}} {{user.apellidos}}</mat-card-title>
   </mat-card-header>
@@ -17,5 +17,5 @@
   <mat-card-actions class="card-footer">
     <button mat-button color="warn" (click)="mostrarSnackbar(user.nombre + ' aukeratu duzu'); erabiDetails()" class="btn btn-danger">Ikusi gehiago...</button>
     <button mat-button color="info" (click)="mostrarSnackbar(user.nombre + ' aukeratu duzu'); erabiDetails()" class="btn btn-info">Editatu</button>
-    </mat-card-actions>
+  </mat-card-actions>
 </mat-card>

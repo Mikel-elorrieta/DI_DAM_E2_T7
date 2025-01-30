@@ -31,8 +31,13 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+
   ) {}
+
+ngOnInit() {
+  this.authService.logout();
+}
 
   login() {
     if (!this.Username || !this.Pass) {

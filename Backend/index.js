@@ -11,17 +11,17 @@ app.use(bodyParser.json());
 // MySQL datu-baserako konexioa sortu
 const db = mysql.createConnection({
     //Localhost.....
- //  host: 'localhost', // MySQL zerbitzariaren helbidea
- //  port: '3306' , // Portua 
+    //  host: 'localhost', // MySQL zerbitzariaren helbidea
+    //  port: '3306' , // Portua 
 
     //Clase.....
 
     // iker host: '10.5.104.39'
-    host: '10.5.104.39', // MySQL zerbitzariaren helbidea
+    host: '10.5.104.49', // MySQL zerbitzariaren helbidea
     user: 'admin', // MySQL erabiltzailea
     password: '', // MySQL pasahitza
     database: 'elorbase', // Datu-basearen izena
-    port: '3309' , // Portua 
+    port: '3309', // Portua 
 
 });
 
@@ -89,22 +89,36 @@ app.post('/login', (req, res) => {
     });
 });
 
-  app.post('/addUser', async (req, res) => {
-    
-    const newItem = req.body;
-    console.log("EN EL BACKEND / POST");
-    console.log(newItem);
+// app.post('/createUser', (req, res) => {
+//     console.log("EN EL BACKEND / POST");
+//     console.log(newItem);
+//     const newItem = req.body;
+//     const query = 'INSERT INTO users SET ?';
+//     db.query(query, newItem, (err, results) => {
+//         if (err) throw err;
+//         console.log("ERROR", err)
+//         res.send({ id: results.insertId, ...newItem });
 
-    const query = 'INSERT INTO users SET ?';
-    db.query(query, newItem, (err, results) => {
-        if (err) throw err;
-        console.log("ERROR" , err)
-
-        res.send({ id: results.insertId, ...newItem });
-
+//     });
+// });
+app.post('/addUser', (req, res) => {
+    const { username, password, email, nombre, apellidos, telefono1, dni, direccion, telefono2, tipo_id, argazkia } = req.body;
+  
+    if (!username || !password || !email) {
+      return res.status(400).json({ success: false, message: 'Faltan datos obligatorios' });
+    }
+  
+    const query = 'INSERT INTO users (username, password, email, nombre, apellidos, telefono1, dni, direccion, telefono2, tipo_id, argazkia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const values = [username, password, email, nombre, apellidos, telefono1, dni, direccion, telefono2, tipo_id, argazkia];
+  
+    db.query(query, values, (err, result) => {
+      if (err) {
+        console.error('Error al insertar usuario:', err);
+        return res.status(500).json({ success: false, message: 'Error al insertar el usuario' });
+      }
+      res.status(201).json({ success: true, message: 'Usuario creado correctamente', id: result.insertId });
     });
   });
-  
 
 
 

@@ -21,7 +21,6 @@ export class MapaService {
   async findIkastetxeById(id: Number): Promise<Iikastetxeak | undefined> {
     try {
       const ikastetxeak = await this.getIkastetxeak();
-     console.log(ikastetxeak);
       return ikastetxeak.find((ikastetxe) => ikastetxe.CCEN === id);
     } catch (error) {
       console.error('Error al buscar el ikastetxe:', error);

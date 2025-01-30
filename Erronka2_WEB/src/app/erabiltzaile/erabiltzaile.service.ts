@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/IUser';
 import { environment } from '../environments/environment';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -52,7 +53,9 @@ export class ErabiltzaileService {
       return this.http.post<IUser>(`${environment.baseUrl}/addUser`, user);
 
     }
-
+    crearUsuario(user: any): Observable<any> {
+      return this.http.post<any>(`${environment.baseUrl}/addUser`, user);
+    }
 
 
 

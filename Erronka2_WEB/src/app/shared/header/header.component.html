@@ -3,12 +3,10 @@
     <div class="container-fluid">
       <div class="d-flex align-items-center w-100">
 
-        <!-- Logo de la marca (Izquierda) -->
         <div class="me-auto">
           <img src="/logo.jpg" alt="Elorrieta Erreka Mari" class="logo" style="height: 50px;">
         </div>
 
-        <!-- Selector de idioma (Derecha) -->
         <div class="ms-auto">
           <select name="language" id="language-select" class="form-select" (change)="translatetext($event)">
             <option value="eu">EU</option>
@@ -16,8 +14,7 @@
           </select>
         </div>
 
-        <!-- Botón de logout (Derecha) -->
-        <div class="ms-3">
+        <div class="ms-3" *ngIf="logued">
           <button mat-button class="btn btn-danger" (click)="logout()">
             {{'logout' | translate}}
           </button>

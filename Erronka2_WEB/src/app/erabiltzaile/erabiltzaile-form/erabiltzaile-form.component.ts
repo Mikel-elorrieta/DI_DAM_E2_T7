@@ -41,43 +41,26 @@ export class ErabiltzaileFormComponent {
 
   onSubmit() {
 
-      this.addUser(this.usuario);
-
+     // this.addUser(this.usuario);
+this.guardar(this.usuario);
   }
 //REGISTRO DE USUARIO
 
 
 addUser(user: IUser) {
-  this.service.getUsers().subscribe({
-    next: (response) => {
-      console.log(response);
-      this._ikasleak = response;
-    },
-    error: (error) => {
-      console.log(error);
-    }
-  });
-
-  // Asegúrate de que el objeto 'user' esté completo
-  console.log('Usuario a agregar:', user);
-
-  if (!user.id) {
-    const maxId = this._ikasleak.reduce((max, item) => Math.max(max, item.id || 0), 0);
-    user.id = maxId + 1;
-  }
-
-  const existingUser = this._ikasleak.find((u) => u.id === user.id);
-
-  if (existingUser) {
-    console.log("El usuario con ese ID ya existe.");
-    alert("El usuario con este ID ya existe.");
-    return;
-  }
 
   this.service.addUser(user);
 
 }
-
+guardar(user: IUser) {
+  this.service.crearUsuario(user).subscribe(response => {
+    console.log('Usuario creado:', response);
+    alert('Usuario creado correctamente');
+  }, error => {
+    console.error('Error al crear usuario:', error);
+    alert('Hubo un error al crear el usuario');
+  });
+}
 
 // ACTUALIZA EL IF DE USUARIO
 actuID(event: Event) {

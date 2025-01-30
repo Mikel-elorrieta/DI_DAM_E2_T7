@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ErabiltzaileService } from '../erabiltzaile.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,12 +9,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ImagenPipePipe } from '../../auth/pipes/Imagen.pipe';
 import { IUser } from '../../interfaces/IUser';
 import { RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 
   selector: 'app-erabiltzaile-details',
 
-  imports: [RouterModule, MatCardModule, MatButtonModule, CommonModule, FormsModule, TranslateModule],
+  imports: [RouterModule, MatCardModule, MatButtonModule, CommonModule, FormsModule, TranslateModule, ImagenPipePipe],
 
   templateUrl: './erabiltzaile-details.component.html',
 
@@ -21,13 +23,26 @@ import { RouterModule } from '@angular/router';
 
 })
 
-export class ErabiltzaileDetailsComponent {
+export class ErabiltzaileDetailsComponent implements OnInit {
 
-  private _user?: IUser ;
+  private _user : IUser =  {}  ;
+  private _id: number = 0;
+
+
+  constructor(private snackBar: MatSnackBar, private erabiltzaileService: ErabiltzaileService, private route: ActivatedRoute,
+    ) { }
+
+    ngOnInit(): void {
+
+      this._id = this.route.snapshot.params['id'];
+      this._user = this.getuserBYID( this._id);
+      console.log('Usuario:', this._user);
+
+    }
 
 
 
-  constructor(private snackBar: MatSnackBar) {}
+
 
 
 
@@ -44,9 +59,6 @@ export class ErabiltzaileDetailsComponent {
 
   get user(){
 
-
-
-
     return this._user;
   }
 
@@ -54,10 +66,14 @@ export class ErabiltzaileDetailsComponent {
 
   getuserBYID(id: number) {
 
-    // this._user = this.erabiltzaileService.getErabiltzaileByID(id);
+   this.erabiltzaileService.getErabiltzaileByID(id).subscribe((user) => {
 
+        this._user = user;
 
-
+      }, (error) => {
+        console.error('Error al obtener el usuario:', error);
+        this.mostrarSnackbar('Error al obtener el usuario');
+      });
 
     return this._user;
   }
