@@ -24,7 +24,7 @@ export const routes: Routes = [
       { path: 'editUser/:id', component: ErabiltzaileFormComponent },
       { path: 'userDetails/:id', component: ErabiltzaileDetailsComponent },
       { path: 'bilera', component: BileraComponent },
-    //  { path: '**', redirectTo: 'home' }
+      { path: '**', redirectTo: 'home' }
     ]
   },
   {
@@ -37,7 +37,7 @@ export const routes: Routes = [
       { path: 'addUser', component: ErabiltzaileFormComponent },
       { path: 'editUser/:id', component: ErabiltzaileFormComponent },
       { path: 'userDetails/:id', component: ErabiltzaileDetailsComponent },
-     // { path: '**', redirectTo: 'home' }
+      { path: '**', redirectTo: 'home' }
     ],
   },
   {
@@ -48,7 +48,7 @@ export const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'bilera/:id', component: BileraDetailsComponent },
       { path: 'userDetails/:id', component: ErabiltzaileDetailsComponent },
-    //  { path: '**', redirectTo: 'home' }
+     { path: '**', redirectTo: 'home' }
     ]
   }
 ,
@@ -61,7 +61,7 @@ export const routes: Routes = [
       { path: 'bilerak', component: BileraComponent },
       { path: 'userDetails/:id', component: ErabiltzaileDetailsComponent },
       { path: 'list', component: ErabiltzaileListComponent },
-     // { path: '**', redirectTo: 'home' }
+      { path: '**', redirectTo: 'home' }
     ]
   },
 

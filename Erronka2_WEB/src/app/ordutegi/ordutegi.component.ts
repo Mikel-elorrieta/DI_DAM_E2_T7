@@ -3,10 +3,11 @@ import { IHorarios } from '../interfaces/IHorarios';
 import { HomeService } from '../home/home.service';
 import { AuthService } from '../auth/auth.service';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ordutegi',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './ordutegi.component.html',
   styleUrl: './ordutegi.component.css'
 })

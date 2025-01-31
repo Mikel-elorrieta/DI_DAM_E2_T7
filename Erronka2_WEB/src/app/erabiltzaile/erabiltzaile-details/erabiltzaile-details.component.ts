@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ImagenPipePipe } from '../../auth/pipes/Imagen.pipe';
 import { IUser } from '../../interfaces/IUser';
 import { ErabiltzaileService } from '../erabiltzaile.service';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
@@ -29,14 +30,16 @@ export class ErabiltzaileDetailsComponent implements OnInit {
   private _id: number = 0;
 
 
-  constructor(private snackBar: MatSnackBar, private erabiltzaileService: ErabiltzaileService, private route: ActivatedRoute, private router: Router
+  constructor(private snackBar: MatSnackBar, private erabiltzaileService: ErabiltzaileService, private route: ActivatedRoute, private router: Router, private auths : AuthService
   ) { }
+
+  private _auth !: IUser | undefined;
 
   ngOnInit(): void {
 
     this._id = this.route.snapshot.params['id'];
     this._user = this.getuserBYID(this._id);
-    console.log('Usuario:', this._user);
+    this.auths.auth;
 
   }
 
@@ -52,7 +55,9 @@ export class ErabiltzaileDetailsComponent implements OnInit {
 
   }
 
-
+  get auth()  {
+    return this.auths.auth!;
+  }
   editarUsuario() {
     this.mostrarSnackbar(this.user?.nombre + ' aukeratu duzu')
     this.router.navigate([`god/editUser/${this.user.id}`]);

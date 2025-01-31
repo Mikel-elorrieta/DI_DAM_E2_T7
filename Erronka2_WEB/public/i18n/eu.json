@@ -14,5 +14,17 @@
   "users": "Ikasle kopuru : ",
   "teachers": "Irakasle kopuru : ",
   "admins": "Administratzaile kopuru : ",
-  "reunion": "Bilera"
+  "reunion": "Bilera",
+  "Titulo" : "Izenburua",
+  "Alumnoid:" : "Ikasle id",
+  "Fecha" : "Data",
+  "Asunto" : "Gaia",
+  "Aula" : "Gela",
+  "Estado" : "Egoera",
+  "Ubicacion" : "Kokapena",
+  "ver_mas" : "Gehiago ikusi",
+  "editar" : "Editatu",
+  "Ordutegia" : "Ordutegia",
+  "ReunionesHoy" : "Gaurko bilera kopuru"
+
 }

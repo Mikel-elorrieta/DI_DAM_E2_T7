@@ -1,18 +1,20 @@
-<h1 class="text-center my-4">Ordutegia</h1>
+<h1 class="text-center my-4">{{ 'Ordutegia' | translate }}</h1>
 
-<table class="table table-bordered table-striped table-hover">
-  <thead class="thead-dark">
-    <tr>
-      <th></th>
-      <th *ngFor="let egun of egunak">{{ egun }}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let ordu of orduak">
-      <td class="font-weight-bold">{{ ordu }}</td>
-      <td *ngFor="let egun of egunak">
-        {{ getModulo(egun, ordu)[0]?.Modulo }}
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th *ngFor="let egun of egunak">{{ egun }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ordu of orduak">
+        <td class="font-weight-bold">{{ ordu }}</td>
+        <td *ngFor="let egun of egunak">
+          {{ getModulo(egun, ordu)[0]?.Modulo }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -14,6 +14,19 @@
   "users": "Número de alumnos : ",
   "teachers": "Número de profesores : ",
   "admins": "Número de administradores : ",
-  "reunion": "Reunión"
+  "reunion": "Reunión",
+  "Titulo" : "Título",
+  "Alumnoid:" : "ID del alumno",
+  "Fecha" : "Fecha",
+  "Asunto" : "Asunto",
+  "Aula" : "Aula",
+  "Estado" : "Estado",
+  "Ubicacion" : "Ubicación",
+  "ver_mas" : "Ver más",
+  "editar" : "Editar",
+  "Ordutegia" : "Horario",
+  "ReunionesHoy" : "Reuniones de hoy"
+
+
 
 }

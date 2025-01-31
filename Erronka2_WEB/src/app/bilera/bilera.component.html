@@ -1,7 +1,7 @@
 <div class="container my-4">
   <h1 class="text-center mb-4">{{ 'reunion' | translate }}</h1>
   <div class="row">
-    <div *ngFor="let bilera of bilerak" class="col-md-3 mb-4"> <!-- Adjust col-md-* for different grid sizes -->
+    <div *ngFor="let bilera of bilerak" class="col-md-3 mb-4">
       <mat-card class="h-100">
         <mat-card-header class="card-header">
           <mat-card-title class="card-title">{{ bilera.titulo }}</mat-card-title>
@@ -11,11 +11,11 @@
         </mat-card-header>
         <mat-card-content class="card-body">
           <p class="card-text">
-            <strong>{{ 'asunto' | translate }}:</strong> {{ bilera.asunto }}
+            <strong>{{ 'Asunto' | translate }}:</strong> {{ bilera.asunto }}
             <br>
-            <strong>{{ 'aula' | translate }}:</strong> {{ bilera.aula }}
+            <strong>{{ 'Aula' | translate }}:</strong> {{ bilera.aula }}
             <br>
-            <strong>{{ 'estado' | translate }}:</strong> {{ bilera.estado }}
+            <strong>{{ 'Estado' | translate }}:</strong> {{ bilera.estado }}
           </p>
         </mat-card-content>
         <mat-card-actions class="card-footer">
@@ -31,7 +31,7 @@
             color="info"
             (click)="mostrarSnackbar(bilera.titulo + ' editatuko duzu')"
             class="btn btn-info">
-            {{ 'edit' | translate }}
+            {{ 'editar' | translate }}
           </button>
         </mat-card-actions>
       </mat-card>

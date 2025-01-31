@@ -42,7 +42,7 @@
     </div>
     <div class="card-footer d-flex justify-content-between">
       <button mat-button color="info" (click)="editarUsuario()" class="btn btn-info">Editatu</button>
-      <button mat-button color="info" (click)="borrarUsuario()" class="btn btn-danger">Ezabatu</button>
+      <button mat-button color="info" (click)="borrarUsuario()" class="btn btn-danger" *ngIf="auth.tipo_id === 2">Ezabatu</button>
     </div>
   </div>
 </div>

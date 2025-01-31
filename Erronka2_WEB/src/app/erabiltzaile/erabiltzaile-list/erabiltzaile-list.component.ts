@@ -47,7 +47,6 @@ export class ErabiltzaileListComponent implements OnInit {
     if (this.auth.tipo_id === 1 || this.auth.tipo_id === 2) {
       this.erabiltzaileService.getIrakas().subscribe({
         next: (response) => {
-          console.log('Irakas:', response);
           this.addUsersToList(response);
         },
         error: (error) => {
@@ -59,7 +58,6 @@ export class ErabiltzaileListComponent implements OnInit {
     if (this.auth.tipo_id === 1 || this.auth.tipo_id === 2 || this.auth.tipo_id === 3) {
       this.erabiltzaileService.getUsers().subscribe({
         next: (response) => {
-          console.log('Users:', response);
           this.addUsersToList(response);
         },
         error: (error) => {
@@ -71,7 +69,6 @@ export class ErabiltzaileListComponent implements OnInit {
     if (this.auth.tipo_id === 1) {
       this.erabiltzaileService.getAdmin().subscribe({
         next: (response) => {
-          console.log('Admin:', response);
           this.addUsersToList(response);
         },
         error: (error) => {
@@ -94,8 +91,12 @@ export class ErabiltzaileListComponent implements OnInit {
   }
 
   createUser() {
-    this.router.navigate([`god/addUser`]);
-    console.log('Crear usuario');
+    if (this.auth.tipo_id === 1){
+      this.router.navigate([`god/addUser`]);
+    }
+    else{
+      this.router.navigate([`admin/addUser`]);
+    }
   }
 
 

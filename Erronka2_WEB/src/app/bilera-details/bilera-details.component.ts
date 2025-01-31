@@ -36,7 +36,8 @@ import { FooterComponent } from "../shared/footer/footer.component";
     MatDialogModule,
     MapaComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TranslateModule
 ],
   templateUrl: './bilera-details.component.html',
   styleUrls: ['./bilera-details.component.css']
