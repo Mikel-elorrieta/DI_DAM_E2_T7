@@ -11,51 +11,50 @@ import { Observable } from 'rxjs';
 })
 export class ErabiltzaileService {
 
-  constructor(private http : HttpClient,  private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 
-  private _ikasleak : IUser[] = [];
-
-
-
-    getUsers() {
-
-      return this.http.get<IUser[]>(`${environment.baseUrl}/ikasleak`);
+  private _ikasleak: IUser[] = [];
 
 
 
-    }
+  getUsers() {
 
-
-    getIrakas() {
-
-      return this.http.get<IUser[]>(`${environment.baseUrl}/irakasleak`);
+    return this.http.get<IUser[]>(`${environment.baseUrl}/ikasleak`);
 
 
 
-    }
-    getAdmin() {
-
-      return this.http.get<IUser[]>(`${environment.baseUrl}/admin`);
+  }
 
 
+  getIrakas() {
 
-    }
-    getErabiltzaileByID(id?: number) {
-
-      return this.http.get<IUser>(`${environment.baseUrl}/user/${id}`);
-    }
+    return this.http.get<IUser[]>(`${environment.baseUrl}/irakasleak`);
 
 
-    addUser(user : IUser) {
-      console.log('User:', user);
 
-      return this.http.post<IUser>(`${environment.baseUrl}/addUser`, user);
+  }
+  getAdmin() {
 
-    }
-    crearUsuario(user: any): Observable<any> {
-      return this.http.post<any>(`${environment.baseUrl}/addUser`, user);
-    }
+    return this.http.get<IUser[]>(`${environment.baseUrl}/admin`);
+
+
+
+  }
+  getErabiltzaileByID(id?: number) {
+
+    return this.http.get<IUser>(`${environment.baseUrl}/user/${id}`);
+  }
+  crearUsuario(user: any): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/addUser`, user);
+  }
+  editarUsuario(user: any): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}/updateUser`, user);
+  }
+  borrarUsuario(id: number): Observable<any> {
+    return this.http.delete<any>(`${environment.baseUrl}/deleteUser/${id}`);
+}
+
 
 
 

@@ -18,10 +18,10 @@ export class MapaService {
     }
   }
 
-  async findIkastetxeById(id: Number): Promise<Iikastetxeak | undefined> {
+  async findIkastetxeById(id_centro: Number): Promise<Iikastetxeak | undefined> {
     try {
       const ikastetxeak = await this.getIkastetxeak();
-      return ikastetxeak.find((ikastetxe) => ikastetxe.CCEN === id);
+      return ikastetxeak.find((ikastetxe) => ikastetxe.CCEN === id_centro);
     } catch (error) {
       console.error('Error al buscar el ikastetxe:', error);
       return undefined;

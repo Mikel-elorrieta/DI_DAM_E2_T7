@@ -1,21 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { HeaderComponent } from "../../shared/header/header.component";
-import { FooterComponent } from "../../shared/footer/footer.component";
+import { FormsModule } from '@angular/forms';
 import { IUser } from '../../interfaces/IUser';
 import { ErabiltzaileService } from '../erabiltzaile.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-erabiltzaile-form',
-  imports: [CommonModule, FormsModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, FormsModule ],
   templateUrl: './erabiltzaile-form.component.html',
   styleUrl: './erabiltzaile-form.component.css'
 })
 export class ErabiltzaileFormComponent {
-
 
 
   _ikasleak : IUser[] = [];
@@ -37,21 +35,35 @@ export class ErabiltzaileFormComponent {
   matriculacion : string = '';
   curso : string = '';
 
-  constructor(private service : ErabiltzaileService) { }
+  constructor(private service : ErabiltzaileService, private route : ActivatedRoute) { }
 
   onSubmit() {
+    console.log('Usuario:', this.usuario.id);
 
-     // this.addUser(this.usuario);
-this.guardar(this.usuario);
+
+    if (this.usuario.id === undefined) {
+      this.guardar(this.usuario);
+    }else{
+      this.editar(this.usuario);
+    }
   }
 //REGISTRO DE USUARIO
+ngOnInit(): void {
 
 
-addUser(user: IUser) {
+this.route.params.subscribe(params => {
+  const id = params['id'];
+  if (id) {
+    this.service.getErabiltzaileByID(id).subscribe(response => {
+      this.usuario = response;
+    });
+  }
 
-  this.service.addUser(user);
+});
 
 }
+
+
 guardar(user: IUser) {
   this.service.crearUsuario(user).subscribe(response => {
     console.log('Usuario creado:', response);
@@ -61,16 +73,20 @@ guardar(user: IUser) {
     alert('Hubo un error al crear el usuario');
   });
 }
+editar(user: IUser) {
+  this.service.editarUsuario(user).subscribe(response => {
+    console.log('Usuario editado:', response);
+    alert('Usuario editado correctamente');
+  }, error => {
+    console.error('Error al editar usuario:', error);
+    alert('Hubo un error al editar el usuario');
+  });
+}
 
 // ACTUALIZA EL IF DE USUARIO
 actuID(event: Event) {
   const id = (event.target as HTMLSelectElement).value;
   this.usuario.tipo_id = parseInt(id);
 }
-
-
-
-
-
 
 }

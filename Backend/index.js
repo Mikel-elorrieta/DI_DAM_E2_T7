@@ -56,7 +56,7 @@ app.get('/irakasleak', (req, res) => {
         res.send(results);
     });
 });
-app.get('/admin', (req, res) => {
+app.get('/admins', (req, res) => {
     const query = 'SELECT * FROM users where tipo_id = 2';
     db.query(query, (err, results) => {
         if (err) throw err;
@@ -89,57 +89,70 @@ app.post('/login', (req, res) => {
     });
 });
 
-// app.post('/createUser', (req, res) => {
-//     console.log("EN EL BACKEND / POST");
-//     console.log(newItem);
-//     const newItem = req.body;
-//     const query = 'INSERT INTO users SET ?';
-//     db.query(query, newItem, (err, results) => {
-//         if (err) throw err;
-//         console.log("ERROR", err)
-//         res.send({ id: results.insertId, ...newItem });
-
-//     });
-// });
 app.post('/addUser', (req, res) => {
+
     const { username, password, email, nombre, apellidos, telefono1, dni, direccion, telefono2, tipo_id, argazkia } = req.body;
-  
+
     if (!username || !password || !email) {
-      return res.status(400).json({ success: false, message: 'Faltan datos obligatorios' });
+        return res.status(400).json({ success: false, message: 'Faltan datos obligatorios' });
     }
-  
+
     const query = 'INSERT INTO users (username, password, email, nombre, apellidos, telefono1, dni, direccion, telefono2, tipo_id, argazkia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
     const values = [username, password, email, nombre, apellidos, telefono1, dni, direccion, telefono2, tipo_id, argazkia];
-  
+
     db.query(query, values, (err, result) => {
-      if (err) {
-        console.error('Error al insertar usuario:', err);
-        return res.status(500).json({ success: false, message: 'Error al insertar el usuario' });
-      }
-      res.status(201).json({ success: true, message: 'Usuario creado correctamente', id: result.insertId });
-    });
-  });
-
-
-
-app.put('/users/:id', (req, res) => {
-    const { id } = req.params;
-    const updatedItem = req.body;
-    const query = 'UPDATE users SET ? WHERE id = ?';
-    db.query(query, [updatedItem, id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
+        if (err) {
+            console.error('Error al insertar usuario:', err);
+            return res.status(500).json({ success: false, message: 'Error al insertar el usuario' });
+        }
+        res.status(201).json({ success: true, message: 'Usuario creado correctamente', id: result.insertId });
     });
 });
 
-app.delete('/usersdelete/:id', (req, res) => {
-    const { id } = req.params;
+
+
+app.post('/updateUser', (req, res) => {
+    const { id, username, password, email, nombre, apellidos, telefono1, dni, direccion, telefono2, tipo_id, argazkia } = req.body;
+    if (!username || !password || !email) {
+        return res.status(400).json({ success: false, message: 'Faltan datos obligatorios' });
+    }
+
+    const query = 'Update users set username = ?, password = ?, email = ?, nombre = ?, apellidos = ?, telefono1 = ?, dni = ?, direccion = ?, telefono2 = ? where id = ?';
+    const values = [username, password, email, nombre, apellidos, telefono1, dni, direccion, telefono2, id];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Error al editar usuario:', err);
+            return res.status(500).json({ success: false, message: 'Error al editar el usuario' });
+        }
+        res.status(201).json({ success: true, message: 'Usuario editado correctamente', id: result.insertId });
+    });
+});
+
+app.delete('/deleteUser/:id', (req, res) => {
+    const { id } = req.params;  // Ahora obtenemos el ID de la URL
+
+    if (!id) {
+        return res.status(400).json({ success: false, message: 'Falta el ID del usuario' });
+    }
+
     const query = 'DELETE FROM users WHERE id = ?';
-    db.query(query, [id], (err, results) => {
-        if (err) throw err;
-        res.send(results);
+    const values = [id];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Error al borrar usuario:', err);
+            return res.status(500).json({ success: false, message: 'Error al borrar el usuario' });
+        }
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
+        }
+
+        res.status(200).json({ success: true, message: 'Usuario borrado correctamente' });
     });
 });
+
 // Endpoints CRUD CICLOS
 
 app.get('/ciclos', (req, res) => {

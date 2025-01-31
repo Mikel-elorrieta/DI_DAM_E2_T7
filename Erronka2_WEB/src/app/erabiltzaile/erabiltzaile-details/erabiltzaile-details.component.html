@@ -1,14 +1,14 @@
 <div class="d-flex justify-content-center align-items-center ">
   <div class="card shadow-sm" style="width: 60rem;">
     <div class="card-header bg-primary text-black text-center">
-      <h1>{{ user?.id ? 'Editatu' : 'Erabiltzaile berria' }}</h1>
+      <h1>{{ user?.nombre }}</h1>
     </div>
     <div class="card-body">
       <div class="text-center mb-3">
         <img [src]="user | imagen" [alt]="user.argazkia" class="card-img-top rounded-circle w-50">
       </div>
       <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
+        <label for="nombre" class="form-label">Nombre y apellidos</label>
         <p class="form-control">{{ user?.nombre }} {{ user?.apellidos }}</p>
       </div>
       <div class="mb-3">
@@ -37,12 +37,12 @@
       </div>
       <div class="mb-3">
         <label for="tipo_id" class="form-label">Tipo de usuario</label>
-        <p class="form-control">{{ user?.tipo_id || 'Desconocido' }}</p>
+        <p class="form-control">{{ user.tipo_id === 1 ? 'God' : user.tipo_id === 2 ? ' Admin' : user.tipo_id === 3 ? 'Teacher' : 'Student' }}</p>
       </div>
     </div>
     <div class="card-footer d-flex justify-content-between">
-      <button mat-button color="info" (click)="mostrarSnackbar(user?.nombre + ' aukeratu duzu')" class="btn btn-info">Editatu</button>
-      <button mat-button color="info" (click)="mostrarSnackbar(user?.nombre + ' aukeratu duzu')" class="btn btn-danger">Ezabatu</button>
+      <button mat-button color="info" (click)="editarUsuario()" class="btn btn-info">Editatu</button>
+      <button mat-button color="info" (click)="borrarUsuario()" class="btn btn-danger">Ezabatu</button>
     </div>
   </div>
 </div>

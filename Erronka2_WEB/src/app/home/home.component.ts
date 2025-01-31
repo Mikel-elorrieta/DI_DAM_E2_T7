@@ -1,23 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { AuthService } from '../auth/auth.service';
+import { TarjetaComponent } from '../erabiltzaile/tarjeta/tarjeta.component';
+import { IReuniones } from '../interfaces/IReuniones';
+import { IUser } from '../interfaces/IUser';
 import { AdminComponent } from './admin/admin.component';
 import { GodComponent } from './god/god.component';
-import { CommonModule } from '@angular/common';
+import { HomeService } from './home.service';
 import { StudentComponent } from './student/student.component';
 import { TeacherComponent } from './teacher/teacher.component';
-import { IUser } from '../interfaces/IUser';
-import { AuthService } from '../auth/auth.service';
-import { HeaderComponent } from "../shared/header/header.component";
-import { TarjetaComponent } from '../erabiltzaile/tarjeta/tarjeta.component';
-import{TranslateModule} from '@ngx-translate/core';
-import { HomeService } from './home.service';
-import { FooterComponent } from "../shared/footer/footer.component";
-import { IReuniones } from '../interfaces/IReuniones';
 
 
 @Component({
   selector: 'app-home-admin',
-  imports: [TranslateModule, TarjetaComponent, AdminComponent, GodComponent, StudentComponent, TeacherComponent, CommonModule, HeaderComponent, FooterComponent],
+  imports: [TranslateModule, TarjetaComponent, AdminComponent, GodComponent, StudentComponent, TeacherComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -25,6 +23,7 @@ export class HomeComponent {
 
   _ikasleak : IUser[] = [];
   _irakasle : IUser[] = [];
+  _admin : IUser[] = [];
   private _gaurkoBilerak: IReuniones[] = [];
 
 
@@ -41,6 +40,7 @@ ngOnInit() {
 this.bilerakLortu();
 this.getikasleakKopuru();
 this.getirakasleKopuru();
+this.getAdminKopuru();
 }
 
 
@@ -91,5 +91,19 @@ bilerakLortu() {
       }
     });
   }
+
+
+  getAdminKopuru(){
+
+      this.home.getAdmins().subscribe({
+        next: (response) => {
+          console.log(response);
+          this._admin = response;
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+    }
 
 }

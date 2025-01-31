@@ -1,7 +1,6 @@
-<app-header></app-header>
 
 <div class="card shadow p-4">
-  <h2 class="text-center mb-3">Crear Usuario</h2>
+  <h2 class="text-center mb-3">{{ usuario.id === undefined ? 'CREAR USUARIO' :  'EDITAR USUARIO' }}</h2>
   <form (ngSubmit)="onSubmit()" novalidate>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
@@ -39,7 +38,10 @@
       <label for="telefono2" class="form-label">Teléfono 2 (Opcional)</label>
       <input type="tel" id="telefono2" name="telefono2" class="form-control" pattern="[0-9]{9}" [(ngModel)]="usuario.telefono2">
     </div>
-    <div class="mb-3">
+
+    <div *ngIf="usuario.id === undefined">
+
+      <div class="mb-3">
       <label for="tipo_id" class="form-label">Tipo ID</label>
       <select class="form-select mb-3" name="tipo_id" [(ngModel)]="usuario.tipo_id" (change)="actuID($event)">
         <option value=2>Administrador</option>
@@ -47,7 +49,6 @@
         <option value=4>Ikasle</option>
       </select>
     </div>
-
     <!-- Campos adicionales para tipo_id === 4 (Ikasle) -->
     <div class="mb-3" *ngIf="usuario.tipo_id === 4">
       <label for="matriculacion" class="form-label">CICLO</label>
@@ -66,9 +67,9 @@
         <option value="2">2</option>
       </select>
     </div>
+  </div>
 
-    <button type="submit" class="btn btn-primary w-100">Crear Usuario</button>
+    <button type="submit" class="btn btn-primary w-100">{{ usuario.id === undefined ? 'CREAR USUARIO' :  'EDITAR USUARIO' }}</button>
   </form>
 </div>
 
-<app-footer></app-footer>

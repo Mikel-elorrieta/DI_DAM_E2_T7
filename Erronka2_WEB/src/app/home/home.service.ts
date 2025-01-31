@@ -26,6 +26,11 @@ export class HomeService {
     return this.http.get<IUser[]>(`${environment.baseUrl}/irakasleak`);
 
   }
+  getAdmins() {
+
+      return this.http.get<IUser[]>(`${environment.baseUrl}/admins`);
+
+    }
 
   getGaurkoBilerak() {
     return this.http.get<IReuniones[]>(`${environment.baseUrl}/gaurkoBilerak`);
@@ -42,7 +47,7 @@ export class HomeService {
 
     return this.http.get<IHorarios[]>(`${environment.baseUrl}/ordutegia/${id}`);
   }
-  //Erabiltzaile baten bilerak
+
     getBilerakByID(id?: number) {
 
       return this.http.get<IReuniones[]>(`${environment.baseUrl}/bilerak/${id}`);
@@ -51,7 +56,7 @@ export class HomeService {
 
     }
 
-    //Bilera id baten bilerak
+
     getBileraByID(id?: string) {
 
       return this.http.get<IReuniones>(`${environment.baseUrl}/bilera/${id}`);

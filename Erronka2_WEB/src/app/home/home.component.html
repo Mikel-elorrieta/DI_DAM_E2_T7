@@ -1,21 +1,34 @@
-
 <div class="container mt-4">
   <div class="row justify-content-center">
     <app-tarjeta [user]="user" class="col-md-3"></app-tarjeta>
   </div>
 
-  <div class="text-center mt-4">
-    <span *ngIf="getRole() === 1 || getRole() === 2">
-        <!-- garuko bilera kantitatea aurkeztu <p> :.. -->
-    <div class="col-md-12">
-      <p>Gaurko bilera kopuru: {{gaurkoBilerak.length}}</p>
+  <div class="text-center mt-4 align-items-center">
+    <div *ngIf="getRole() === 1 || getRole() === 2 || getRole() === 3">
+      <div class="col-md-4 mx-auto">
+        <p class="text-center">Gaurko bilera kopuru: {{gaurkoBilerak.length}}</p>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card small">
+            <img src="alumno.png" class="card-img-top" alt="alumno">
+            <p>{{"users" | translate}} {{_ikasleak.length}}</p>
+          </div>
+        </div>
+        <div *ngIf="getRole() === 1 || getRole() === 2" class="col-md-4">
+          <div class="card small">
+            <img src="profesor.jpg" class="card-img-top" alt="alumno">
+            <p>{{"teachers" | translate}} {{_irakasle.length}}</p>
+          </div>
+        </div>
+        <div *ngIf="getRole() === 1 || getRole() === 2" class="col-md-4">
+          <div class="card small">
+            <img src="admin.jpg" class="card-img-top" alt="alumno">
+            <p>{{"admins" | translate}} {{_admin.length}}</p>
+          </div>
+        </div>
+      </div>
     </div>
-      {{"users" | translate}} {{_ikasleak.length}} <br>
-      {{"teachers" | translate}} {{_irakasle.length}}
-    </span>
-    <span *ngIf="getRole() === 3">
-      {{"users" | translate}} {{_ikasleak.length}}
-    </span>
   </div>
 
   <div class="mt-4">
@@ -36,5 +49,3 @@
     </ng-container>
   </div>
 </div>
-
-
