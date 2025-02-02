@@ -4,6 +4,7 @@ import { HomeService } from '../home/home.service';
 import { AuthService } from '../auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ordutegi',
@@ -18,8 +19,9 @@ export class OrdutegiComponent {
   egunak = ['L/A', 'M/A', 'X', 'J/O', 'V/O'];
   orduak = [1, 2, 3, 4, 5];
 
-  constructor(private home: HomeService, private auth: AuthService) {
+  constructor(private home: HomeService, private auth: AuthService, private translate: TranslateService) {
     this.ordutegiaLortu();
+
   }
 
 
@@ -47,10 +49,11 @@ export class OrdutegiComponent {
       }
     });
   }
-
+  getIdioma(): string {
+    return this.translate.currentLang;
+  }
   getModulo(dia: string, hora: number): IHorarios[] {
-
-
+    console.log( this.ordutegia.filter((element) => element.Dia === dia && +element.Hora === hora));
     return this.ordutegia.filter((element) => element.Dia === dia && +element.Hora === hora);
   }
 

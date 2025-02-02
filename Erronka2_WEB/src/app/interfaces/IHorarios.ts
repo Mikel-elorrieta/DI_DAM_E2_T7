@@ -2,6 +2,7 @@ export interface IHorarios {
   Dia:       dia;
   Hora:      number;
   Modulo:    string;
+  ModuloEu:    string;
   Profesor:  string;
 
 }

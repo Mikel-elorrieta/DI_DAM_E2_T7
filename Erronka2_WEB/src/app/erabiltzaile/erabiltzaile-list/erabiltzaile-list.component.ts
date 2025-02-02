@@ -10,10 +10,11 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-erabiltzaile-list',
-  imports: [MatInputModule, CommonModule, MatDivider, TarjetaComponent, MatAutocompleteModule, CommonModule, FormsModule, MatFormField, MatLabel,],
+  imports: [MatInputModule, CommonModule, MatDivider, TarjetaComponent, MatAutocompleteModule, CommonModule, FormsModule, MatFormField, MatLabel,TranslateModule],
   templateUrl: './erabiltzaile-list.component.html',
   styleUrls: ['./erabiltzaile-list.component.css']
 })

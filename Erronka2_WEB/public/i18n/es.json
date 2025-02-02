@@ -25,7 +25,16 @@
   "ver_mas" : "Ver más",
   "editar" : "Editar",
   "Ordutegia" : "Horario",
-  "ReunionesHoy" : "Reuniones de hoy"
+  "ReunionesHoy" : "Reuniones de hoy",
+  "DNI" : "DNI",
+  "FiltrarUsuarios" : "Filtrar usuarios",
+  "AñadirUsuario" : "Añadir usuario",
+  "Filtrar" : "Filtrar",
+  "CREAR_USUARIO": "Crear usuario",
+  "EDITAR_USUARIO": "Editar usuario",
+  "Opcional": "Opcional",
+  "Tipo_ID": "Tipo de ID",
+  "CICLO": "Ciclo"
 
 
 

@@ -6,15 +6,15 @@
   <mat-card-content class="card-body">
     <h3 class="card-subtitle mb-2 text-muted">{{user.username}}</h3>
     <p class="card-text">
-      <strong>DNI: </strong>{{user.dni}};
+      <strong>{{"DNI" | translate}} : </strong>{{user.dni}};
       <br>
-      <strong>TELEFONO: </strong>{{user.telefono1}};
+      <strong>{{"phone" | translate}} : </strong>{{user.telefono1}};
       <br>
-      <strong>Direccion: </strong>{{user.direccion}};
+      <strong>{{"address" | translate}} : </strong>{{user.direccion}};
       <br>
     </p>
   </mat-card-content>
   <mat-card-actions class="card-footer">
-    <button mat-button color="warn" (click)="mostrarSnackbar(user.nombre + ' aukeratu duzu'); erabiDetails()" class="btn btn-danger">Ikusi gehiago...</button>
+    <button mat-button color="warn" (click)="mostrarSnackbar(user.nombre + ' aukeratu duzu'); erabiDetails()" class="btn btn-danger">{{"ver_mas" | translate}}</button>
   </mat-card-actions>
 </mat-card>

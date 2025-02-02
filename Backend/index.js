@@ -11,17 +11,19 @@ app.use(bodyParser.json());
 // MySQL datu-baserako konexioa sortu
 const db = mysql.createConnection({
     //Localhost.....
-    //  host: 'localhost', // MySQL zerbitzariaren helbidea
-    //  port: '3306' , // Portua 
+      host: 'localhost', // MySQL zerbitzariaren helbidea
+      port: '3308' , // Portua 
+     
+  
 
     //Clase.....
 
     // iker host: '10.5.104.39'
-    host: '10.5.104.49', // MySQL zerbitzariaren helbidea
+   // host: '10.5.104.49', // MySQL zerbitzariaren helbidea
     user: 'admin', // MySQL erabiltzailea
     password: '', // MySQL pasahitza
     database: 'elorbase', // Datu-basearen izena
-    port: '3309', // Portua 
+    //port: '3309', // Portua 
 
 });
 
@@ -176,7 +178,7 @@ app.get('/horarios', (req, res) => {
 });
 
 
-// GET HORARIOS POR ID 
+// GET HORARIOS POR ID Alumnos
 
 app.get('/ordutegia/:id', (req, res) => {
     const { id } = req.params;
@@ -184,7 +186,8 @@ app.get('/ordutegia/:id', (req, res) => {
         SELECT 
     h.dia AS Dia,
     h.hora AS Hora,
-    m.nombre AS Modulo
+    m.nombre AS Modulo,
+    m.nombre_eus AS ModuloEu
 FROM 
     horarios h
 JOIN 
@@ -226,6 +229,44 @@ GROUP BY
                 ELSE 6
             END,
             h.hora;
+    `;
+    db.query(query, [id], (err, results) => {
+        if (err) throw err;
+        res.send(results);
+    });
+});
+
+// GET HORARIOS POR ID Profesores
+
+
+app.get('/ordutegiaIrakasle/:id', (req, res) => {
+    const { id } = req.params;
+    const query = `
+       SELECT 
+    h.dia AS Dia,
+    h.hora AS Hora,
+    m.nombre AS Modulo,
+    m.nombre_eus AS ModuloEu
+FROM
+    horarios h
+JOIN
+    modulos m ON m.id = h.modulo_id
+JOIN 
+    users u ON u.id = h.profe_id
+WHERE
+    h.profe_id = ?
+GROUP BY
+    h.dia, h.hora, m.nombre
+ORDER BY
+    CASE
+        WHEN h.dia = 'L/A' THEN 1
+        WHEN h.dia = 'M/A' THEN 2
+        WHEN h.dia = 'X' THEN 3
+        WHEN h.dia = 'J/O' THEN 4
+        WHEN h.dia = 'V/O' THEN 5
+        ELSE 6
+    END,
+    h.hora;
     `;
     db.query(query, [id], (err, results) => {
         if (err) throw err;

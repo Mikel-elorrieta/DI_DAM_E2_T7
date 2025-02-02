@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { IUser } from '../../interfaces/IUser';
 import { ErabiltzaileService } from '../erabiltzaile.service';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
 @Component({
   selector: 'app-erabiltzaile-form',
-  imports: [CommonModule, FormsModule ],
+  imports: [CommonModule, FormsModule , TranslateModule],
   templateUrl: './erabiltzaile-form.component.html',
   styleUrl: './erabiltzaile-form.component.css'
 })

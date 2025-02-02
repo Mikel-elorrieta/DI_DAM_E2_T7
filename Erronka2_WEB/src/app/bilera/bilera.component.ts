@@ -39,9 +39,14 @@ export class BileraComponent {
   }
 
   bileraDetails(id: number) {
-    this.router.navigate([`ikasle/bilera/${id}`]);
-    console.log('Navigated to:', this.router.url);
-    this.mostrarSnackbar('Bilera details');
+
+
+
+    if(this.auth.auth?.tipo_id === 3){
+      this.router.navigate([`irakasle/bilera/${id}`]);
+    }else if(this.auth.auth?.tipo_id === 4){
+      this.router.navigate([`ikasle/bilera/${id}`]);
+    }
   }
 
 

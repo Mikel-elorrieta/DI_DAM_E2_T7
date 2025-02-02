@@ -25,6 +25,17 @@
   "ver_mas" : "Gehiago ikusi",
   "editar" : "Editatu",
   "Ordutegia" : "Ordutegia",
-  "ReunionesHoy" : "Gaurko bilera kopuru"
+  "ReunionesHoy" : "Gaurko bilera kopuru",
+  "DNI" : "NAN",
+  "FiltrarUsuarios" : "Erabiltzaileak iragazi",
+  "AñadirUsuario" : "Erabiltzailea gehitu",
+  "Filtrar" : "Iragazi",
+  "CREAR_USUARIO": "Erabiltzailea sortu",
+  "EDITAR_USUARIO": "Erabiltzailea editatu",
+  "Opcional": "Aukerakoa",
+  "Tipo_ID": "ID mota",
+  "CICLO": "Zikloa",
+  "CURSO": "Ikasturtea"
+
 
 }

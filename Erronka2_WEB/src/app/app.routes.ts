@@ -58,7 +58,7 @@ export const routes: Routes = [
     data: { role: 3 },
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'bilerak', component: BileraComponent },
+      { path: 'bilera/:id', component: BileraDetailsComponent },
       { path: 'userDetails/:id', component: ErabiltzaileDetailsComponent },
       { path: 'list', component: ErabiltzaileListComponent },
       { path: '**', redirectTo: 'home' }
