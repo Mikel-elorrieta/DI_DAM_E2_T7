@@ -11,9 +11,9 @@
   "address": "Dirección",
   "spanish": "Español",
   "basque": "Euskera",
-  "users": "Número de alumnos : ",
-  "teachers": "Número de profesores : ",
-  "admins": "Número de administradores : ",
+  "users": "Alumnado",
+  "teachers": "Profesorado",
+  "admins": "Administracion",
   "reunion": "Reunión",
   "Titulo" : "Título",
   "Alumnoid:" : "ID del alumno",
@@ -34,7 +34,8 @@
   "EDITAR_USUARIO": "Editar usuario",
   "Opcional": "Opcional",
   "Tipo_ID": "Tipo de ID",
-  "CICLO": "Ciclo"
+  "CICLO": "Ciclo",
+  "Participantes": "Participantes de la reunión"
 
 
 

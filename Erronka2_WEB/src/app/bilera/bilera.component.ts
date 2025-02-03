@@ -61,9 +61,7 @@ export class BileraComponent {
     }
     this.homeS.getBilerakByID(userId).subscribe({
       next: (response) => {
-        console.log('Bilerak lortu');
         this.bilerak = response;
-        console.log(this.bilerak);
       },
       error: (error) => {
         console.log(error);

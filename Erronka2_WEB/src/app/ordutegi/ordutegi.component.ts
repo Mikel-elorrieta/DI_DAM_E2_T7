@@ -34,15 +34,9 @@ export class OrdutegiComponent {
     }
     this.home.getOrdutegiaByID(userId).subscribe({
       next: (response) => {
-        console.log(response);
         this.ordutegia = response;
-        console.log(this.ordutegia);
 
-        if (this.ordutegia.length > 1) {
-          console.log(this.ordutegia[0].Profesor);
-        } else {
-          console.log('No hay suficientes elementos en ordutegia');
-        }
+
       },
       error: (error) => {
         console.log(error);
@@ -53,7 +47,6 @@ export class OrdutegiComponent {
     return this.translate.currentLang;
   }
   getModulo(dia: string, hora: number): IHorarios[] {
-    console.log( this.ordutegia.filter((element) => element.Dia === dia && +element.Hora === hora));
     return this.ordutegia.filter((element) => element.Dia === dia && +element.Hora === hora);
   }
 

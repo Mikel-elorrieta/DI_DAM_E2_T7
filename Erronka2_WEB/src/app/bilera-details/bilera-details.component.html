@@ -15,12 +15,17 @@
               <p class="form-control">{{ bilera.titulo }}</p>
             </div>
             <div class="mb-3">
+
               <label for="fecha" class="form-label">{{'Fecha' | translate}}</label>
-              <p class="form-control">{{ bilera.fecha }}</p>
+              <p class="form-control">{{ bilera.fecha | date: 'short' }}</p>
             </div>
             <div class="mb-3">
               <label for="asunto" class="form-label">{{'Asunto' | translate}}</label>
               <p class="form-control">{{ bilera.asunto }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="fecha" class="form-label">{{'Participantes' | translate}}</label>
+              <p class="form-control">{{user1}} - {{user2}}</p>
             </div>
             <div class="mb-3">
               <label for="aula" class="form-label">{{'Aula' | translate}}</label>

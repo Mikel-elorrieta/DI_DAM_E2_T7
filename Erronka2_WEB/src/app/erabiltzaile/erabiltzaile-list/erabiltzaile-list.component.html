@@ -43,7 +43,7 @@
 
 <div class="grid bm-8">
   <!-- Tarjetas filtradas -->
-  <div *ngFor="let user of filteredUsers" class="col-12 sm:col-4 md:col-3 xl:col-2 ">
-    <app-tarjeta [user]="user"></app-tarjeta>
+  <div *ngFor="let user of filteredUsers" class="col-12 sm:col-4 md:col-3 xl:col-2 d-flex justify-content-center">
+    <app-tarjeta [user]="user" class="w-100"></app-tarjeta>
   </div>
 </div>

@@ -11,9 +11,9 @@
   "address": "Helbidea",
   "spanish": "Gaztelera",
   "basque": "Euskara",
-  "users": "Ikasle kopuru : ",
-  "teachers": "Irakasle kopuru : ",
-  "admins": "Administratzaile kopuru : ",
+  "users": "Ikaslea",
+  "teachers": "Irakaslea",
+  "admins": "Administratzailea",
   "reunion": "Bilera",
   "Titulo" : "Izenburua",
   "Alumnoid:" : "Ikasle id",
@@ -35,7 +35,8 @@
   "Opcional": "Aukerakoa",
   "Tipo_ID": "ID mota",
   "CICLO": "Zikloa",
-  "CURSO": "Ikasturtea"
+  "CURSO": "Ikasturtea",
+  "Participantes": "Bilerako parte hartzaileak"
 
 
 }

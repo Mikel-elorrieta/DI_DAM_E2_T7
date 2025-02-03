@@ -16,8 +16,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { HomeService } from '../home/home.service';
 import { IReuniones } from '../interfaces/IReuniones';
 import { MapaComponent } from '../mapa/mapa.component';
-import { HeaderComponent } from "../shared/header/header.component";
-import { FooterComponent } from "../shared/footer/footer.component";
 
 @Component({
   selector: 'app-bilera-details',
@@ -35,8 +33,7 @@ import { FooterComponent } from "../shared/footer/footer.component";
     MatOptionModule,
     MatDialogModule,
     MapaComponent,
-    HeaderComponent,
-    FooterComponent,
+
     TranslateModule
 ],
   templateUrl: './bilera-details.component.html',
@@ -46,7 +43,8 @@ export class BileraDetailsComponent implements OnInit {
 
   _bilera = <IReuniones>{ id_reunion: 0, estado: '', estado_eus: null, profesor_id: 0, alumno_id: 0, id_centro: '', titulo: '', asunto: '', aula: '', fecha: new Date()};
 
-
+  private r1 : string = '';
+  private r2 : string = '';
 
   constructor(
     private snackBar: MatSnackBar,
@@ -54,10 +52,14 @@ export class BileraDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) {
+
   }
   id: Number = 0;
 ngOnInit(): void {
     this.bileraLortu();
+
+
+
   }
 
 
@@ -75,20 +77,41 @@ ngOnInit(): void {
       (response) => {
         console.log('Bilera lortu da:', response);
         this._bilera = response;
+        this.bilerareUser();
+
       },
       (error) => {
         console.error('Errorea bilera lortzean:', error);
       }
     );
+
+  }
+  //RECUPERA UN ARRAY DE DOS STRINGS CON LOS NOMBRES DE LOS USUARIOS QUE PARTICIPAN EN LA REUNION EL PRIMERO ES EL PROFESOR Y EL SEGUNDO EL ALUMNO
+  bilerareUser(): void {
+    console.log('Solicitando nombres con IDs:', this._bilera.profesor_id, this._bilera.alumno_id);
+
+    this.homeS.getBileraUsers(this._bilera.profesor_id, this._bilera.alumno_id).subscribe({
+      next: (response) => {
+        console.log('Respuesta recibida:', response);
+        if (response.length === 2) {
+          this.r1 = response[0];
+          this.r2 = response[1];
+        } else {
+          console.warn('Formato inesperado en la respuesta:', response);
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener los usuarios:', error);
+      }
+    });
   }
 
+  get user1(): string {
+    return this.r1;
+  }
 
-
-
-  //EL ID DEL CENTRO ES EL CCEN = bilera.id_centro
-
-
-
-  //MAPA DE
+  get user2(): string {
+    return this.r2;
+  }
 
 }

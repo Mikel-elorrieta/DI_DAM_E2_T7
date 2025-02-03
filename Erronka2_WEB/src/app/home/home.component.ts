@@ -47,7 +47,6 @@ this.getAdminKopuru();
 bilerakLortu() {
   this.homeS.getGaurkoBilerak().subscribe({
     next: (response) => {
-      console.log(response);
       this._gaurkoBilerak = response;
     },
     error: (error) => {
@@ -70,7 +69,6 @@ bilerakLortu() {
 
     this.home.getUsers().subscribe({
       next: (response) => {
-        console.log(response);
         this._ikasleak = response;
       },
       error: (error) => {
@@ -83,7 +81,6 @@ bilerakLortu() {
 
     this.home.getIrakas().subscribe({
       next: (response) => {
-        console.log(response);
         this._irakasle = response;
       },
       error: (error) => {
@@ -97,7 +94,6 @@ bilerakLortu() {
 
       this.home.getAdmins().subscribe({
         next: (response) => {
-          console.log(response);
           this._admin = response;
         },
         error: (error) => {

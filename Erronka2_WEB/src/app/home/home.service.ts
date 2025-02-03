@@ -56,4 +56,8 @@ export class HomeService {
   getBileraByID(id?: string) {
     return this.http.get<IReuniones>(`${environment.baseUrl}/bilera/${id}`);
   }
+
+  getBileraUsers(profe_id: number , alumno_id : number) {
+    return this.http.post<string[]>(`${environment.baseUrl}/bileraUsers`, {profe_id, alumno_id});
+  }
 }
