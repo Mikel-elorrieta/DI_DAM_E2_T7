@@ -60,10 +60,29 @@ export class ErabiltzaileDetailsComponent implements OnInit {
   }
   editarUsuario() {
     this.mostrarSnackbar(this.user?.nombre + ' aukeratu duzu')
-    this.router.navigate([`god/editUser/${this.user.id}`]);
+
+    if (!window.confirm('EDIT ' + this.user?.nombre + '?')) {
+      return;
+    }
+
+
+    if(this.auths.logeatutaDago()){
+      switch(this.auths.auth?.tipo_id){
+        case 1:
+          this.router.navigate([`god/editUser/${this.user.id}`]);
+          break;
+        case 2:
+          this.router.navigate([`admin/editUser/${this.user.id}`]);
+          break;
+      }
+    }
 
   }
   borrarUsuario() {
+
+    if (!window.confirm('DELETE ' + this.user?.nombre + '?')) {
+      return;
+    }
     if (!this.user?.id) {
       this.mostrarSnackbar('Error: No hay usuario seleccionado');
       return;
@@ -72,7 +91,16 @@ export class ErabiltzaileDetailsComponent implements OnInit {
     this.erabiltzaileService.borrarUsuario(this.user.id).subscribe(
       (response) => {
         this.mostrarSnackbar(this.user.nombre + ' ha sido eliminado');
-        this.router.navigate([`home`]);
+        if(this.auths.logeatutaDago()){
+          switch(this.auths.auth?.tipo_id){
+            case 1:
+              this.router.navigate(['god/home']);
+              break;
+            case 2:
+              this.router.navigate(['admin/home']);
+              break;
+          }
+        }
       },
       (error) => {
         console.error('Error al borrar el usuario:', error);

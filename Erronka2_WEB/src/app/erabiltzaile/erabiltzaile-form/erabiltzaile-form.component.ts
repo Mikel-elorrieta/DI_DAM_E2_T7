@@ -67,6 +67,11 @@ export class ErabiltzaileFormComponent {
 
 
   guardar(user: IUser) {
+
+    if (!window.confirm('CREATE ?')) {
+      return;
+    }
+
     this.service.crearUsuario(user, this.curso, this.matriculacion).subscribe(() => {
 
       alert('Usuario creado correctamente');
