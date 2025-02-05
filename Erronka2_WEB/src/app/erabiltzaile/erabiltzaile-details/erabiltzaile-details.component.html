@@ -42,7 +42,7 @@
     </div>
     <div class="card-footer d-flex justify-content-between">
       <button mat-button color="info" (click)="editarUsuario()" class="btn btn-info" *ngIf="auth.tipo_id === 2 || auth.tipo_id === 1">{{ 'editar' | translate }}</button>
-      <button mat-button color="info" (click)="borrarUsuario()" class="btn btn-danger" *ngIf="auth.tipo_id === 2">{{ 'Ezabatu' | translate }}</button>
+      <button mat-button color="info" (click)="borrarUsuario()" class="btn btn-danger" *ngIf="auth.tipo_id === 2 || auth.tipo_id === 1">{{ 'Ezabatu' | translate }}</button>
     </div>
   </div>
 </div>
