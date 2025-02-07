@@ -1,0 +1,53 @@
+
+<hr class="mb-4" />
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card shadow-sm"></div>
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-BLACK text-center">
+        <h1>{{bilera.titulo}}</h1>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <div class="mb-3">
+              <label for="titulo" class="form-label">{{'Titulo' | translate}}</label>
+              <p class="form-control">{{ bilera.titulo }}</p>
+            </div>
+            <div class="mb-3">
+
+              <label for="fecha" class="form-label">{{'Fecha' | translate}}</label>
+              <p class="form-control">{{ bilera.fecha | date: 'short' }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="asunto" class="form-label">{{'Asunto' | translate}}</label>
+              <p class="form-control">{{ bilera.asunto }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="fecha" class="form-label">{{'Participantes' | translate}}</label>
+              <p class="form-control">{{user1}} - {{user2}}</p>
+            </div>
+            <div class="mb-3">
+              <label for="aula" class="form-label">{{'Aula' | translate}}</label>
+              <p class="form-control">{{ bilera.aula }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="estado" class="form-label">{{'Estado' | translate}}</label>
+              <p class="form-control">{{ bilera.estado }}</p>
+            </div>
+            <div class="mb-3">
+              <label for="kokapena" class="form-label">{{'Ubicacion' | translate}}</label>
+              <div class="d-flex justify-content-center align-items-center">
+                <app-mapa
+                  *ngIf="bilera.id_centro"
+                  [id]="+bilera.id_centro"
+                  class="w-100"
+                ></app-mapa>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

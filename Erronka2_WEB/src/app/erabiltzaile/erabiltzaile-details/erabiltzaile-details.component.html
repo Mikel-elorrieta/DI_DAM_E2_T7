@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center align-items-center ">
+  <div class="card shadow-sm" style="width: 60rem;">
+    <div class="card-header bg-primary text-black text-center">
+      <h1>{{ user?.nombre }}</h1>
+    </div>
+    <div class="card-body">
+      <div class="text-center mb-3">
+        <img [src]="user | imagen" [alt]="user.argazkia" class="card-img-top rounded-circle w-50">
+      </div>
+      <div class="mb-3">
+        <label for="nombre" class="form-label">{{ 'name' | translate }} {{ 'surname' | translate }}</label>
+        <p class="form-control">{{ user?.nombre }} {{ user?.apellidos }}</p>
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">{{ 'user' | translate }}</label>
+        <p class="form-control">{{ user?.username }}</p>
+      </div>
+      <div class="mb-3">
+        <label for="dni" class="form-label">{{ 'DNI' | translate }}</label>
+        <p class="form-control">{{ user?.dni }}</p>
+      </div>
+      <div class="mb-3">
+        <label for="telefono1" class="form-label">{{ 'phone' | translate }} 1</label>
+        <p class="form-control">{{ user?.telefono1 }}</p>
+      </div>
+      <div class="mb-3">
+        <label for="telefono2" class="form-label">{{ 'phone' | translate }} 2</label>
+        <p class="form-control">{{ user?.telefono2 || 'N/A' }}</p>
+      </div>
+      <div class="mb-3">
+        <label for="direccion" class="form-label">{{ 'address' | translate }}</label>
+        <p class="form-control">{{ user?.direccion }}</p>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">{{ 'email' | translate }}</label>
+        <p class="form-control">{{ user?.email }}</p>
+      </div>
+      <div class="mb-3">
+        <label for="tipo_id" class="form-label">{{ 'Tipo_ID' | translate }}</label>
+        <p class="form-control">{{ user.tipo_id === 1 ? 'God' : user.tipo_id === 2 ? 'Admin' : user.tipo_id === 3 ? 'Teacher' : 'Student' }}</p>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <button mat-button color="info" (click)="editarUsuario()" class="btn btn-info" *ngIf="auth.tipo_id === 2 || auth.tipo_id === 1">{{ 'editar' | translate }}</button>
+      <button mat-button color="info" (click)="borrarUsuario()" class="btn btn-danger" *ngIf="auth.tipo_id === 2 || auth.tipo_id === 1">{{ 'Ezabatu' | translate }}</button>
+    </div>
+  </div>
+</div>

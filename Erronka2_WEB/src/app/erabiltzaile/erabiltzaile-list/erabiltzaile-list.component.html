@@ -1,0 +1,49 @@
+<mat-divider></mat-divider>
+<br />
+
+
+<div *ngIf="auth.tipo_id === 1 || auth.tipo_id === 2" class="text-center my-4">
+
+  <button mat-raised-button color="primary" (click)="createUser()" class="btn btn-primary">{{"AñadirUsuario" | translate }}</button>
+</div>
+<div class="container">
+  <h1 class="text-center my-4">{{"FiltrarUsuarios" | translate }}</h1>
+
+<!-- Campo de búsqueda -->
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <mat-form-field class="w-100">
+        <mat-label>{{"Filtrar" | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Elige uno"
+          [(ngModel)]="termino"
+          name="termino"
+          [matAutocomplete]="auto"
+          (input)="buscar()"
+          class="form-control"
+        />
+        <mat-autocomplete
+          autoActiveFirstOption
+          #auto="matAutocomplete"
+          (optionSelected)="optionSelected($event.option.value)"
+        >
+          <mat-option *ngFor="let user of filteredUsers" [value]="user.nombre">
+            {{ user.nombre }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="grid bm-8">
+  <!-- Tarjetas filtradas -->
+  <div *ngFor="let user of filteredUsers" class="col-12 sm:col-4 md:col-3 xl:col-2 d-flex justify-content-center">
+    <app-tarjeta [user]="user" class="w-100"></app-tarjeta>
+  </div>
+</div>

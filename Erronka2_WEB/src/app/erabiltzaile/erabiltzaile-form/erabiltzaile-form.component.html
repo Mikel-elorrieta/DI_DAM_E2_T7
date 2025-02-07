@@ -1,0 +1,74 @@
+<div class="card shadow p-4">
+  <h2 class="text-center mb-3">
+    {{ usuario.id === undefined ? ('CREAR_USUARIO' | translate) : ('EDITAR_USUARIO' | translate) }}
+  </h2>  <form (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-3">
+      <label for="email" class="form-label">{{ 'email' | translate }}</label>
+      <input type="email" id="email" name="email" class="form-control" required [(ngModel)]="usuario.email">
+    </div>
+    <div class="mb-3">
+      <label for="username" class="form-label">{{ 'user' | translate }}</label>
+      <input type="text" id="username" name="username" class="form-control" required [(ngModel)]="usuario.username">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">{{ 'password' | translate }}</label>
+      <input type="password" id="password" name="password" class="form-control" required [(ngModel)]="usuario.password">
+    </div>
+    <div class="mb-3">
+      <label for="nombre" class="form-label">{{ 'name' | translate }}</label>
+      <input type="text" id="nombre" name="nombre" class="form-control" required [(ngModel)]="usuario.nombre">
+    </div>
+    <div class="mb-3">
+      <label for="apellidos" class="form-label">{{ 'surname' | translate }}</label>
+      <input type="text" id="apellidos" name="apellidos" class="form-control" required [(ngModel)]="usuario.apellidos">
+    </div>
+    <div class="mb-3">
+      <label for="dni" class="form-label">{{ 'DNI' | translate }}</label>
+      <input type="text" id="dni" name="dni" class="form-control" required pattern="[0-9]{8}[A-Za-z]{1}" [(ngModel)]="usuario.dni">
+    </div>
+    <div class="mb-3">
+      <label for="direccion" class="form-label">{{ 'address' | translate }}</label>
+      <input type="text" id="direccion" name="direccion" class="form-control" required [(ngModel)]="usuario.direccion">
+    </div>
+    <div class="mb-3">
+      <label for="telefono1" class="form-label">{{ 'phone' | translate }} 1</label>
+      <input type="tel" id="telefono1" name="telefono1" class="form-control" required pattern="[0-9]{9}" [(ngModel)]="usuario.telefono1">
+    </div>
+    <div class="mb-3">
+      <label for="telefono2" class="form-label">{{ 'phone' | translate }} 2 ({{ 'Opcional' | translate }})</label>
+      <input type="tel" id="telefono2" name="telefono2" class="form-control" pattern="[0-9]{9}" [(ngModel)]="usuario.telefono2">
+    </div>
+
+    <div *ngIf="usuario.id === undefined">
+      <div class="mb-3">
+        <label for="tipo_id" class="form-label">{{ 'Tipo_ID' | translate }}</label>
+        <select class="form-select mb-3" name="tipo_id" [(ngModel)]="usuario.tipo_id" (change)="actuID($event)">
+          <option value=2>{{ 'admins' | translate }}</option>
+          <option value=3>{{ 'teachers' | translate }}</option>
+          <option value=4>{{ 'users' | translate }}</option>
+        </select>
+      </div>
+
+      <div class="mb-3" *ngIf="usuario.tipo_id === 4">
+        <label for="matriculacion" class="form-label">{{ 'CICLO' | translate }}</label>
+        <select class="form-select mb-3" name="matriculacion" [(ngModel)]="matriculacion">
+          <option value="1">DAM</option>
+          <option value="2">DAW</option>
+          <option value="3">ASIR</option>
+          <option value="4">SMR</option>
+        </select>
+      </div>
+
+      <div class="mb-3" *ngIf="usuario.tipo_id === 4">
+        <label for="curso" class="form-label">{{ 'CURSO' | translate }}</label>
+        <select class="form-select mb-3" name="curso" [(ngModel)]="curso">
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">
+      {{ usuario.id === undefined ? ('CREAR_USUARIO' | translate) : ('EDITAR_USUARIO' | translate) }}
+    </button>  </form>
+</div>
